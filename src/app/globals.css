@@ -345,3 +345,25 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-live-wave i { animation: none !important; }
 }
+
+.hero-feature-pills {
+  max-width: 58rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-feature-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--color-soft-border);
+  border-radius: 9999px;
+  background: var(--color-cream);
+  padding: 0.55rem 0.85rem;
+  color: var(--color-text);
+  font-size: 0.75rem;
+  font-weight: 650;
+}
+.hero-feature-pill span {
+  color: var(--color-label);
+  font-weight: 900;
+}
