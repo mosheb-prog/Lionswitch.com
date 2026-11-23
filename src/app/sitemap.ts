@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SERVICES, SITE_URL } from "@/lib/constants";
 
-// NOTE: this is extended as later phases add /live-dashboard and
-// /holiday-preferences.
+// NOTE: this is extended as the next phase adds /live-dashboard.
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`, changeFrequency: "weekly", priority: 1 },
@@ -11,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/why-lion-switch`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE_URL}/mcp`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/contact`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/holiday-preferences`, changeFrequency: "yearly", priority: 0.4 },
     { url: `${SITE_URL}/privacy-policy`, changeFrequency: "yearly", priority: 0.3 },
   ];
 
