@@ -12,13 +12,13 @@ export function Logo({ onDark = false }: { onDark?: boolean }) {
       <Image
         src="/lion-switch-logo.png"
         alt=""
-        width={36}
-        height={36}
-        className="h-9 w-9 rounded-[10px]"
+        width={42}
+        height={42}
+        className="h-[42px] w-[42px] rounded-[11px]"
         priority
       />
       <span
-        className={`font-[family-name:var(--font-heading)] text-xl font-bold whitespace-nowrap ${
+        className={`font-[family-name:var(--font-heading)] text-[1.3rem] font-bold whitespace-nowrap ${
           onDark ? "text-on-dark" : "text-ink"
         }`}
       >
