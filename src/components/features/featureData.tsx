@@ -3,7 +3,6 @@ import {
   MailIcon,
   PhoneIcon,
   SparkleIcon,
-  UsersIcon,
 } from "@/components/live-dashboard/icons";
 import { COMPANY, STATS } from "@/lib/constants";
 
@@ -57,6 +56,11 @@ function DeskPhoneIcon({ className = base }: { className?: string }) {
   );
 }
 
+/** Old category anchors that now live inside another category. */
+export const CATEGORY_ALIASES: Record<string, string> = {
+  "unified-communications": "connectuc-app",
+};
+
 export type Feature = { name: string; detail: string; addOn?: boolean };
 
 export type FeatureCategory = {
@@ -90,11 +94,11 @@ export const FEATURE_CATEGORIES: FeatureCategory[] = [
   },
   {
     id: "connectuc-app",
-    title: "ConnectUC App",
+    title: "ConnectUC App & Unified Communications",
     short: "ConnectUC",
-    tagline: "One app for calls, texts, chat and meetings — on every device your team uses.",
+    tagline: "ConnectUC is the Lion Switch UC app: calls, texts, chat and meetings on every device your team uses.",
     icon: SmartphoneIcon,
-    highlights: ["iOS", "Android", "Windows", "Mac", "Web"],
+    highlights: ["iOS", "Android", "Windows", "Mac", "Web", "Microsoft Teams"],
     features: [
       { name: "Voice calling", detail: "Make and take business calls from your cell or computer." },
       { name: "Business SMS", detail: "Text customers from your business number, not your personal one." },
@@ -102,21 +106,10 @@ export const FEATURE_CATEGORIES: FeatureCategory[] = [
       { name: "Team messaging", detail: "Chat and collaborate with co-workers in one place." },
       { name: "Video meetings & screen sharing", detail: "Jump from a call to a face-to-face meeting." },
       { name: "Visual voicemail with transcription", detail: "Read voicemails instead of listening to them." },
-    ],
-    link: { label: "Visit ConnectUC", href: COMPANY.connectUcUrl },
-  },
-  {
-    id: "unified-communications",
-    title: "Unified Communications",
-    short: "UC",
-    tagline: "Voice, chat and video brought together, wherever your team works.",
-    icon: UsersIcon,
-    highlights: ["Softphone", "Microsoft Teams connector"],
-    features: [
-      { name: "UC client (ConnectUC)", detail: "One client for calling, messaging and meetings." },
       { name: "Mobile & desktop softphone", detail: "Your office extension on your laptop or cell phone." },
       { name: "Microsoft Teams connector", detail: "Make and receive external calls right inside Microsoft Teams." },
     ],
+    link: { label: "Visit ConnectUC", href: COMPANY.connectUcUrl },
   },
   {
     id: "messaging-fax",

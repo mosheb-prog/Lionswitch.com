@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { KeyboardEvent, useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { FEATURE_CATEGORIES, FeatureCategory } from "@/components/features/featureData";
+import { CATEGORY_ALIASES, FEATURE_CATEGORIES, FeatureCategory } from "@/components/features/featureData";
 
 // The selected category lives in the URL hash (#cloud-pbx, #devices, …) so
 // existing deep links from the homepage, footer and other pages keep working,
@@ -25,7 +25,8 @@ const getHash = () => window.location.hash.slice(1);
 const getServerHash = () => "";
 
 function useSelectedId() {
-  const hash = useSyncExternalStore(subscribe, getHash, getServerHash);
+  const raw = useSyncExternalStore(subscribe, getHash, getServerHash);
+  const hash = CATEGORY_ALIASES[raw] ?? raw;
   return IDS.has(hash) ? hash : FEATURE_CATEGORIES[0].id;
 }
 
@@ -38,7 +39,7 @@ function selectId(id: string) {
 export function FeatureCategoryTiles() {
   const selected = useSelectedId();
   return (
-    <ul className="mx-auto mt-12 grid max-w-5xl grid-cols-3 gap-3 sm:grid-cols-5 lg:grid-cols-9">
+    <ul className="mx-auto mt-12 grid max-w-5xl grid-cols-4 gap-2 sm:gap-3 lg:grid-cols-8">
       {FEATURE_CATEGORIES.map((c, i) => {
         const Icon = c.icon;
         const active = c.id === selected;
@@ -278,8 +279,8 @@ export function FeatureExplorer() {
     <div className="relative">
       {/* Zero-size anchors: old deep links (/features#devices etc.) scroll here,
           and the hash then picks the matching tab. */}
-      {FEATURE_CATEGORIES.map((c) => (
-        <span key={c.id} id={c.id} aria-hidden="true" className="absolute top-0 block h-0 w-0 scroll-mt-28" />
+      {[...FEATURE_CATEGORIES.map((c) => c.id), ...Object.keys(CATEGORY_ALIASES)].map((id) => (
+        <span key={id} id={id} aria-hidden="true" className="absolute top-0 block h-0 w-0 scroll-mt-28" />
       ))}
 
       <div className="grid gap-8 lg:grid-cols-[260px_1fr] lg:gap-10">
