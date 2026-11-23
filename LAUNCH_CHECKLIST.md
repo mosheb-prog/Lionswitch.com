@@ -82,9 +82,9 @@ These three links were provided during the rebuild and are live in the header
 and footer today. Please double-check the **labels** we chose (you only gave
 us the URLs):
 
-- **Customer Portal** → `https://portal.lionswitch.com/portal/`
-- **ConnectUC Login** → the `auth.uc-technologies.com` SSO link
-- **Pay My Bill** → `https://lionswitch.billcenter.net/`
+- **Portal Login** → `https://portal.lionswitch.com/portal/`
+- **Softphone Login** → the `auth.uc-technologies.com` SSO link
+- **Billing Portal** → `https://lionswitch.billcenter.net/`
 
 If the live site has any *other* Login & Support links beyond these three,
 they need to be added — we were not able to crawl the live site from this

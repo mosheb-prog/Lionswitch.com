@@ -72,12 +72,12 @@ export const MAIN_NAV: NavLink[] = [
 // Login & Support dropdown — every link here must be preserved exactly as
 // provided by the business owner. Do not rename, drop or invent entries.
 export const LOGIN_SUPPORT_LINKS: NavLink[] = [
-  { label: "Customer Portal", href: "https://portal.lionswitch.com/portal/" },
+  { label: "Portal Login", href: "https://portal.lionswitch.com/portal/" },
   {
-    label: "ConnectUC Login",
+    label: "Softphone Login",
     href: "https://auth.uc-technologies.com/oauth2/authorize?scope=offline_access&client_id=6179f817-5045-4832-aac8-679cc38cb970&response_type=code&redirect_uri=https://auth.uc-technologies.com/auth-callback?redirect=https://app.connectuc.io/auth/login&privacy_policy_url=https%3A%2F%2Fwww.connectuc.io%2Facceptable-use-policy.php&terms_of_service_url=https%3A%2F%2Fwww.connectuc.io%2Ftos&forgot_password_url=https%3A%2F%2Fapp.connectuc.io%2Fauth%2Fforgot-password%3Flogo%3Dhttps%3A%2F%2Fapp.connectuc.io%2Fassets%2FConnectUC-logo-icon-01.png&logo=https://app.connectuc.io/assets/ConnectUC-logo-icon-01.png",
   },
-  { label: "Pay My Bill", href: "https://lionswitch.billcenter.net/" },
+  { label: "Billing Portal", href: "https://lionswitch.billcenter.net/" },
 ];
 
 export type Service = {

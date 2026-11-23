@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Waveform } from "./Waveform";
 import { AskClaudeChat } from "./AskClaudeChat";
-import { PhoneMockup } from "./PhoneMockup";
+import { DeskPhoneMockup } from "./DeskPhoneMockup";
 import { SAMPLE_CALL_LABEL, SAMPLE_CALL_TRANSCRIPT } from "./sample-call";
 
 const MAX_RECORDING_SECONDS = 120;
@@ -121,7 +121,7 @@ export function VoiceDemo() {
 
       {phase === "idle" || phase === "permission-error" ? (
         <div className="mt-6 flex flex-col items-center gap-4">
-          <PhoneMockup onTap={startRecording} label="Tap to talk to Lion Switch" />
+          <DeskPhoneMockup onTap={startRecording} label="Tap to talk to Lion Switch" />
 
           {phase === "permission-error" ? (
             <p role="alert" className="max-w-sm text-center text-sm text-orange-3">
