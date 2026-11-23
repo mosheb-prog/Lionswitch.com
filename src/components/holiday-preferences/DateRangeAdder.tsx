@@ -39,7 +39,7 @@ export function DateRangeAdder({
   }
 
   return (
-    <div className="rounded-2xl border border-soft-border bg-white p-4">
+    <div className="surface rounded-2xl border bg-white p-4">
       <h4 className="text-xs font-bold uppercase tracking-wider text-muted">Add a date range</h4>
       <div className="mt-3 flex flex-wrap items-end gap-3">
         <label className="text-xs font-semibold text-ink">

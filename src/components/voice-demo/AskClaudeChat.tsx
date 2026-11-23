@@ -47,7 +47,7 @@ export function AskClaudeChat({ transcript }: { transcript: string }) {
   }
 
   return (
-    <div className="rounded-2xl border border-soft-border bg-white p-5">
+    <div className="surface rounded-2xl border bg-white p-5">
       <h4 className="font-[family-name:var(--font-heading)] text-sm font-bold text-ink">
         Ask Claude about this call
       </h4>

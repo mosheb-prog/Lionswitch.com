@@ -3,7 +3,7 @@ import { COMPANY } from "@/lib/constants";
 export function MapEmbed() {
   const query = encodeURIComponent(COMPANY.fullAddress);
   return (
-    <div className="overflow-hidden rounded-2xl border border-line">
+    <div className="surface overflow-hidden rounded-2xl border">
       <iframe
         title={`Map to ${COMPANY.name}`}
         src={`https://maps.google.com/maps?q=${query}&output=embed`}

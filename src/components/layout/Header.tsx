@@ -64,7 +64,7 @@ function LoginSupportMenu() {
       {open ? (
         <div
           role="menu"
-          className="absolute right-0 top-full mt-2 w-60 rounded-2xl border border-soft-border bg-white p-2 shadow-xl z-50"
+          className="surface absolute right-0 top-full mt-2 w-60 rounded-2xl border bg-white p-2 z-50"
         >
           {LOGIN_SUPPORT_LINKS.map((link) => (
             <a

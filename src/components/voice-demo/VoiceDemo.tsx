@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Waveform } from "./Waveform";
 import { AskClaudeChat } from "./AskClaudeChat";
+import { PhoneMockup } from "./PhoneMockup";
 import { SAMPLE_CALL_LABEL, SAMPLE_CALL_TRANSCRIPT } from "./sample-call";
 
 const MAX_RECORDING_SECONDS = 120;
@@ -14,24 +15,6 @@ type Phase =
   | "transcribing"
   | "transcript-error"
   | "ready";
-
-function MicIcon({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
-      <path
-        d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M19 11a7 7 0 0 1-14 0M12 18v3"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
 
 export function VoiceDemo() {
   const [phase, setPhase] = useState<Phase>("idle");
@@ -138,15 +121,7 @@ export function VoiceDemo() {
 
       {phase === "idle" || phase === "permission-error" ? (
         <div className="mt-6 flex flex-col items-center gap-4">
-          <button
-            type="button"
-            onClick={startRecording}
-            aria-label="Start talking to Lion Switch"
-            className="mic-pulse grid h-24 w-24 place-items-center rounded-full bg-orange text-ink transition-transform hover:scale-105 focus-visible:scale-105"
-          >
-            <MicIcon className="h-10 w-10" />
-          </button>
-          <p className="text-sm text-on-dark-2">Tap the mic and talk</p>
+          <PhoneMockup onTap={startRecording} label="Tap to talk to Lion Switch" />
 
           {phase === "permission-error" ? (
             <p role="alert" className="max-w-sm text-center text-sm text-orange-3">

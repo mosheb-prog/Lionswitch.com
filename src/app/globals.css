@@ -75,6 +75,28 @@
   h6 {
     font-family: var(--font-heading);
     color: var(--color-ink);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  p {
+    line-height: 1.65;
+  }
+
+  /* Consistent, premium-feeling focus/hover treatment for every text input,
+     textarea and select on the site, instead of each form re-declaring it
+     (and inevitably drifting out of sync). */
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea,
+  select {
+    transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+  }
+  input:not([type="checkbox"]):not([type="radio"]):focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: var(--color-orange);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-orange) 15%, transparent);
   }
 
   /*
@@ -133,15 +155,28 @@
   transform: translateY(0);
 }
 
-/* Hover lift + glow for interactive cards (service/feature cards, etc). */
+/* Elevation system: cards read as "surfaces" (soft ambient shadow at rest,
+   a thin near-invisible border for crisp edges on light backgrounds)
+   rather than flat outlined boxes — the single biggest lever for a
+   premium-vs-flimsy feel. .hover-lift adds motion + a warm glow on top. */
+.surface {
+  border-color: color-mix(in srgb, var(--color-ink) 6%, transparent) !important;
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-ink) 4%, transparent),
+    0 10px 30px -18px color-mix(in srgb, var(--color-ink) 25%, transparent);
+}
+
 .hover-lift {
+  border-color: color-mix(in srgb, var(--color-ink) 6%, transparent) !important;
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-ink) 4%, transparent),
+    0 10px 30px -18px color-mix(in srgb, var(--color-ink) 25%, transparent);
   transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
 }
 .hover-lift:hover,
 .hover-lift:focus-visible {
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px -20px color-mix(in srgb, var(--color-orange) 45%, transparent);
-  border-color: color-mix(in srgb, var(--color-orange) 50%, var(--color-line));
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-ink) 4%, transparent),
+    0 22px 48px -16px color-mix(in srgb, var(--color-orange) 40%, transparent);
+  border-color: color-mix(in srgb, var(--color-orange) 45%, transparent) !important;
 }
 
 /* Slow-drifting ambient glow behind dark sections — a subtle animated
