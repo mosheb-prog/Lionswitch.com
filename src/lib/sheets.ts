@@ -7,6 +7,9 @@
 export async function postToSheetWebhook(
   webhookEnvVar: string,
   payload: Record<string, unknown>,
+  /** "form" sends application/x-www-form-urlencoded (what a Google Apps
+   * Script reading `e.parameter` expects); "json" sends a JSON body. */
+  format: "json" | "form" = "json",
 ): Promise<{ sent: boolean }> {
   const url = process.env[webhookEnvVar];
 
@@ -18,8 +21,15 @@ export async function postToSheetWebhook(
   try {
     const res = await fetch(url, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      headers: {
+        "Content-Type": format === "form" ? "application/x-www-form-urlencoded" : "application/json",
+      },
+      body:
+        format === "form"
+          ? new URLSearchParams(
+              Object.entries(payload).map(([k, v]) => [k, String(v ?? "")]),
+            ).toString()
+          : JSON.stringify(payload),
     });
     if (!res.ok) {
       console.error(`[sheets] webhook ${webhookEnvVar} responded ${res.status}`);

@@ -17,7 +17,6 @@ variables are missing. But the features won't actually work until these are set.
 | `NEWSLETTER_SHEET_WEBHOOK_URL` | Google Apps Script webhook URL | Footer newsletter signups being stored anywhere |
 | `HOLIDAY_SHEET_WEBHOOK_URL` | Google Apps Script webhook URL (can be a different sheet than the newsletter one) | Holiday preferences submissions being stored anywhere |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics | Analytics (only loads after a visitor accepts cookies) |
-| `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL` | Holiday form "Generate with Claude" | Drafting the holiday greeting from the marked dates (the button shows a friendly message if unset) |
 
 Full reference with comments: see `.env.example` in the repo root.
 
@@ -135,6 +134,5 @@ Suggested cutover sequence:
   URL or Lighthouse itself).
 - The actual email/Sheets integrations, since no SMTP credentials or webhook
   URLs were available in this environment — verify these for real on staging.
-- The holiday form's "Generate with Claude" greeting with a real API key.
 - A real accessibility audit with a screen reader (automated checks don't
   catch everything).
