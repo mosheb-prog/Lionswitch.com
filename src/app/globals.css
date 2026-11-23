@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/*
+ * Lion Switch design tokens.
+ * Source of truth: the existing Lion Switch dashboard app
+ * (lionswitch-dashboard/public/style.css) — "one orange highlight, one dark
+ * card." These values are carried over as-is, not reinvented, per the
+ * marketing-site rebuild brief.
+ */
+:root {
+  --color-orange: #f58a0b;
+  --color-orange-3: #f79a12;
+  --color-ink: #131820;
+  --color-cream: #fffdf9;
+  --color-soft: #fff7ee;
+  --color-soft-border: #f0dcc0;
+  --color-line: #f3e6d3;
+  --color-text: #374151;
+  --color-muted: #5f6673;
+  --color-on-dark: #ffffff;
+  --color-on-dark-2: #e5e7eb;
+  --color-label: #b86000;
+
+  --background: var(--color-cream);
+  --foreground: var(--color-text);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-orange: var(--color-orange);
+  --color-orange-3: var(--color-orange-3);
+  --color-ink: var(--color-ink);
+  --color-cream: var(--color-cream);
+  --color-soft: var(--color-soft);
+  --color-soft-border: var(--color-soft-border);
+  --color-line: var(--color-line);
+  --color-text: var(--color-text);
+  --color-muted: var(--color-muted);
+  --color-on-dark: var(--color-on-dark);
+  --color-on-dark-2: var(--color-on-dark-2);
+  --color-label: var(--color-label);
+
+  --font-heading: var(--font-poppins), Arial, sans-serif;
+  --font-body: var(--font-open-sans), Arial, sans-serif;
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--color-ink);
+}
+
+/* Visible focus ring everywhere (WCAG AA / keyboard navigation) */
+:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Glass-style card used across the marketing site, built from existing
+   tokens (ink + orange) rather than new colors. */
+.glass-card {
+  background: color-mix(in srgb, var(--color-ink) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-on-dark) 12%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glow-orange {
+  box-shadow: 0 0 60px -15px color-mix(in srgb, var(--color-orange) 55%, transparent);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--color-ink);
+  color: var(--color-on-dark);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 0.5rem 0;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
