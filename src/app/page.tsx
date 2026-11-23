@@ -1,26 +1,34 @@
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { COMPANY } from "@/lib/constants";
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
+import { Hero } from "@/components/home/Hero";
+import { AboutSummary } from "@/components/home/AboutSummary";
+import { StatsBar } from "@/components/home/StatsBar";
+import { ServicesOverview } from "@/components/home/ServicesOverview";
+import { WhyLionSwitch } from "@/components/home/WhyLionSwitch";
+import { FeatureHighlights } from "@/components/home/FeatureHighlights";
+import { DashboardMcpTeaser } from "@/components/home/DashboardMcpTeaser";
+import { ReadyToSwitchCta } from "@/components/home/ReadyToSwitchCta";
+import { HomeFaq } from "@/components/home/HomeFaq";
 
-// Placeholder home page — full hero, voice demo, stats, services, FAQ, etc.
-// are built out in the next phase. Kept minimal here so Phase 1 (layout,
-// header, footer, cookie banner, theme tokens) is independently verifiable.
+export const metadata: Metadata = pageMetadata({
+  title: "Lion Switch — Enterprise Cloud Communications | Brooklyn, NY",
+  description:
+    "Family-run cloud business phone, UCaaS, contact center and messaging provider based in Brooklyn, NY, serving businesses in all 50 states and internationally.",
+  path: "/",
+});
+
 export default function Home() {
   return (
-    <Container className="py-24 text-center">
-      <h1 className="font-[family-name:var(--font-heading)] text-4xl font-bold text-ink sm:text-5xl">
-        {COMPANY.name}: {COMPANY.tagline}
-      </h1>
-      <p className="mx-auto mt-4 max-w-2xl text-lg text-muted">{COMPANY.description}</p>
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-        <Button href="/contact#demo">Schedule a Free Demo</Button>
-        <Button href="/features" variant="ghost">
-          Explore Features
-        </Button>
-        <Button href={COMPANY.phoneHref} variant="dark">
-          {COMPANY.phoneDisplay}
-        </Button>
-      </div>
-    </Container>
+    <>
+      <Hero />
+      <StatsBar />
+      <AboutSummary />
+      <ServicesOverview />
+      <WhyLionSwitch />
+      <FeatureHighlights />
+      <DashboardMcpTeaser />
+      <ReadyToSwitchCta />
+      <HomeFaq />
+    </>
   );
 }
