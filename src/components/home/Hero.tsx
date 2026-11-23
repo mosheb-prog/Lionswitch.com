@@ -5,7 +5,14 @@ import { Logo } from "@/components/layout/Logo";
 import { VoiceDemo } from "@/components/voice-demo/VoiceDemo";
 import { COMPANY } from "@/lib/constants";
 
-const featurePills = [\n  "Call recording",\n  "Auto attendant and music on hold",\n  "Business texting and text blasts",\n  "Live reports and alerts",\n];\n\nconst benefits = [
+const featurePills = [
+  "Call recording",
+  "Auto attendant and music on hold",
+  "Business texting and text blasts",
+  "Live reports and alerts",
+];
+
+const benefits = [
   { title: "Keep your numbers", detail: "We handle the transfer from your current provider." },
   { title: "Setup done for you", detail: "Phones programmed and ready for your team." },
   { title: "Your office line, anywhere", detail: "Answer on your desk phone, cell or computer." },
@@ -140,7 +147,7 @@ export function Hero() {
           </div>
 
           <div className="hero-benefits mt-14 grid overflow-hidden rounded-2xl border border-soft-border bg-cream sm:grid-cols-2 lg:grid-cols-4">
-            {benefits.map((item, index) => (
+            {benefits.map((item) => (
               <div key={item.title} className="hero-benefit-card flex gap-3 px-5 py-5">
                 <span className="hero-benefit-check mt-0.5">✓</span>
                 <div>
@@ -148,6 +155,11 @@ export function Hero() {
                   <p className="mt-1 text-xs leading-5 text-muted">{item.detail}</p>
                 </div>
               </div>
+            ))}
+          </div>
+          <div className="hero-feature-pills mt-5 flex flex-wrap items-center justify-center gap-2">
+            {featurePills.map((feature) => (
+              <span key={feature} className="hero-feature-pill"><span aria-hidden="true">✓</span>{feature}</span>
             ))}
           </div>
         </Container>
