@@ -40,6 +40,7 @@ export default function PrivacyPolicyPage() {
 
       <Section className="pb-0">
         <SectionHeading
+          as="h1"
           eyebrow="Legal"
           title="Privacy Policy"
           description={`Last updated: ${LAST_UPDATED}`}

@@ -26,6 +26,7 @@ export default function ContactPage() {
 
       <Section className="pb-0">
         <SectionHeading
+          as="h1"
           eyebrow="Contact"
           title="We'd love to hear from you"
           description="Demos, pricing questions, or a review of your current setup — we respond within one business day. Emergency support is available for active customers."

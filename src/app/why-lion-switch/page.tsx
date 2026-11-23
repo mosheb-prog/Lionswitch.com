@@ -47,6 +47,7 @@ export default function WhyLionSwitchPage() {
 
       <Section className="bg-ink text-on-dark">
         <SectionHeading
+          as="h1"
           dark
           eyebrow="Our Story"
           title="Why Lion Switch"

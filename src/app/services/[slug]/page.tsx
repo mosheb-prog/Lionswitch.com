@@ -54,6 +54,7 @@ async function ServiceDetailContent({ params }: { params: Params }) {
 
       <Section className="pb-0">
         <SectionHeading
+          as="h1"
           eyebrow="Services"
           title={service.title}
           description={service.description}
@@ -91,7 +92,13 @@ async function ServiceDetailContent({ params }: { params: Params }) {
 
 export default function ServiceDetailPage({ params }: PageProps<"/services/[slug]">) {
   return (
-    <Suspense fallback={<Section className="pb-0"><SectionHeading eyebrow="Services" title="Loading…" /></Section>}>
+    <Suspense
+      fallback={
+        <Section className="pb-0">
+          <p className="text-center text-muted">Loading…</p>
+        </Section>
+      }
+    >
       <ServiceDetailContent params={params} />
     </Suspense>
   );

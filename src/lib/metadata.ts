@@ -17,6 +17,7 @@ export function pageMetadata(opts: {
       url,
     },
     twitter: {
+      card: "summary_large_image",
       title: opts.title,
       description: opts.description,
     },

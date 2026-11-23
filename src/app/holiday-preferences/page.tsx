@@ -24,6 +24,7 @@ export default function HolidayPreferencesPage() {
 
       <Section className="pb-0">
         <SectionHeading
+          as="h1"
           eyebrow="Holiday Preferences"
           title="Tell us how to handle your lines on holidays"
           description="Mark dates as fully closed or set custom hours, quick-add common holidays, and optionally set up emergency call routing."

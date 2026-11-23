@@ -26,6 +26,7 @@ export default function FeaturesPage() {
 
       <Section className="pb-0">
         <SectionHeading
+          as="h1"
           eyebrow="Features"
           title="Everything your business needs to communicate"
           description="From Cloud PBX to AI-powered call analytics — every feature, in one place."

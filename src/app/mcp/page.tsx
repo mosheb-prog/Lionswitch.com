@@ -65,6 +65,7 @@ export default function McpPage() {
 
       <Section className="bg-ink text-on-dark">
         <SectionHeading
+          as="h1"
           dark
           eyebrow="MCP Integration"
           title="Your phone calls, now connected to Claude."

@@ -32,10 +32,23 @@ function computeCalendarMeta(now: Date): CalendarMeta {
 // useSyncExternalStore (rather than useState+useEffect) lets us give a fixed,
 // deterministic value during prerendering (getServerSnapshot) and the real
 // one on the client (getSnapshot), without a setState-in-effect.
+//
+// getSnapshot's result MUST be a stable reference across calls (React
+// compares with Object.is to decide whether to re-render). Computing a new
+// object/Map every call — as this used to do — makes every call "look"
+// changed, which drives an infinite render loop (React error #185).
+// Caching it the first time it's read on the client fixes that.
 function subscribeNoop() {
   return () => {};
 }
 const PRERENDER_PLACEHOLDER_META = computeCalendarMeta(new Date(2000, 0, 1));
+let cachedClientMeta: CalendarMeta | null = null;
+function getClientCalendarMeta(): CalendarMeta {
+  if (!cachedClientMeta) {
+    cachedClientMeta = computeCalendarMeta(new Date());
+  }
+  return cachedClientMeta;
+}
 
 function sortedEntries(entries: CalendarEntries): CalendarEntry[] {
   return Object.values(entries).sort((a, b) => a.date.localeCompare(b.date));
@@ -68,7 +81,7 @@ export function HolidayPreferencesForm() {
 
   const calendarMeta = useSyncExternalStore(
     subscribeNoop,
-    () => computeCalendarMeta(new Date()),
+    getClientCalendarMeta,
     () => PRERENDER_PLACEHOLDER_META,
   );
 

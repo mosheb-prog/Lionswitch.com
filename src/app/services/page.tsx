@@ -35,6 +35,7 @@ export default function ServicesPage() {
 
       <Section className="pb-0">
         <SectionHeading
+          as="h1"
           eyebrow="Services"
           title="Enterprise Cloud Communications Services"
           description="Six service lines on one platform, consolidating your voice, messaging, video and analytics vendors into one bill."

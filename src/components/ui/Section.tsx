@@ -32,12 +32,15 @@ export function SectionHeading({
   description,
   dark = false,
   center = true,
+  as: Heading = "h2",
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
   dark?: boolean;
   center?: boolean;
+  /** Use "h1" for the single, primary heading of a page. Defaults to "h2". */
+  as?: "h1" | "h2";
 }) {
   return (
     <div className={`max-w-3xl ${center ? "mx-auto text-center" : ""}`}>
@@ -50,13 +53,13 @@ export function SectionHeading({
           {eyebrow}
         </p>
       ) : null}
-      <h2
+      <Heading
         className={`mt-2 font-[family-name:var(--font-heading)] text-3xl font-bold sm:text-4xl ${
           dark ? "text-on-dark" : "text-ink"
         }`}
       >
         {title}
-      </h2>
+      </Heading>
       {description ? (
         <p className={`mt-4 text-lg ${dark ? "text-on-dark-2" : "text-muted"}`}>
           {description}
