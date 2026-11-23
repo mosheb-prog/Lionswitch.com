@@ -5,7 +5,7 @@ import { Logo } from "@/components/layout/Logo";
 import { VoiceDemo } from "@/components/voice-demo/VoiceDemo";
 import { COMPANY } from "@/lib/constants";
 
-const benefits = [
+const featurePills = [\n  "Call recording",\n  "Auto attendant and music on hold",\n  "Business texting and text blasts",\n  "Live reports and alerts",\n];\n\nconst benefits = [
   { title: "Keep your numbers", detail: "We handle the transfer from your current provider." },
   { title: "Setup done for you", detail: "Phones programmed and ready for your team." },
   { title: "Your office line, anywhere", detail: "Answer on your desk phone, cell or computer." },
