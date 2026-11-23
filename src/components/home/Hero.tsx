@@ -1,8 +1,7 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { VoiceDemo } from "@/components/voice-demo/VoiceDemo";
 import { HeroJourney } from "@/components/home/HeroJourney";
+import { DeskScene } from "@/components/home/DeskScene";
 import { COMPANY } from "@/lib/constants";
 
 export function Hero() {
@@ -53,18 +52,8 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="hero-in mt-20 text-center" style={{ animationDelay: "320ms" }}>
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.15em] text-orange-3">
-            Talk to Lion Switch
-          </p>
-          <VoiceDemo />
-          <p className="mt-4 text-sm text-on-dark-2">
-            Powered by our{" "}
-            <Link href="/mcp" className="font-semibold text-orange-3 underline-offset-4 hover:underline">
-              Claude / MCP integration
-            </Link>
-            .
-          </p>
+        <div className="hero-in mt-20" style={{ animationDelay: "320ms" }}>
+          <DeskScene />
         </div>
       </Container>
     </section>

@@ -1,6 +1,6 @@
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import { COMPANY } from "@/lib/constants";
+import Link from "next/link";
 
 const ITEMS = [
   {
@@ -36,12 +36,12 @@ const ITEMS = [
   {
     title: "Devices",
     body: "Zero-touch provisioned desk phones, conference systems, and mobile and desktop softphones.",
-    href: "/features",
+    href: "/features#devices",
   },
   {
     title: "ConnectUC App",
     body: "Voice, SMS, presence, team messaging, video and visual voicemail — on iOS, Android, Windows, Mac and web.",
-    href: COMPANY.connectUcUrl,
+    href: "/features#connectuc-app",
   },
 ];
 
@@ -57,12 +57,21 @@ export function FeatureHighlights() {
       <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {ITEMS.map((item, i) => (
           <Reveal key={item.title} delayMs={(i % 4) * 70}>
-            <div className="hover-lift h-full rounded-2xl border border-line bg-white p-5">
+            <Link
+              href={item.href}
+              className="hover-lift group flex h-full flex-col rounded-2xl border border-line bg-white p-5"
+            >
               <h3 className="font-[family-name:var(--font-heading)] text-base font-bold text-ink">
                 {item.title}
               </h3>
-              <p className="mt-2 text-sm text-muted">{item.body}</p>
-            </div>
+              <p className="mt-2 flex-1 text-sm text-muted">{item.body}</p>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-label">
+                Explore
+                <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+                  &rarr;
+                </span>
+              </span>
+            </Link>
           </Reveal>
         ))}
       </div>
