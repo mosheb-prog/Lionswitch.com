@@ -43,9 +43,9 @@ const ITEMS = [
       "Lion Switch offers white-glove service with flexible terms and transparent pricing. TODO: the business owner is finalizing the exact new contract terms — this answer will be updated once confirmed.",
   },
   {
-    question: "What is the MCP / Claude integration?",
+    question: "What is the MCP integration?",
     answer:
-      "Lion Switch connects your call data to Claude through MCP (Model Context Protocol). Calls are transcribed after they end, and you can ask Claude questions about any call — summaries, action items, caller mood, and more. Learn more on our MCP page.",
+      "Lion Switch connects your call data to any AI assistant that supports MCP (Model Context Protocol). Calls are transcribed after they end, and you can ask your AI questions about any call — summaries, action items, caller mood, and more. Learn more on our MCP page.",
   },
 ];
 

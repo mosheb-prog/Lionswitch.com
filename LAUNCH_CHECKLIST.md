@@ -17,8 +17,7 @@ variables are missing. But the features won't actually work until these are set.
 | `NEWSLETTER_SHEET_WEBHOOK_URL` | Google Apps Script webhook URL | Footer newsletter signups being stored anywhere |
 | `HOLIDAY_SHEET_WEBHOOK_URL` | Google Apps Script webhook URL (can be a different sheet than the newsletter one) | Holiday preferences submissions being stored anywhere |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics | Analytics (only loads after a visitor accepts cookies) |
-| `OPENAI_API_KEY`, `TRANSCRIPTION_PROVIDER`, `TRANSCRIPTION_MODEL` | Voice demo transcription | The "Talk to Lion Switch" demo producing a real transcript from a real recording (the scripted sample call works either way) |
-| `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL` | "Ask Claude about this call" | The voice demo's Claude Q&A feature |
+| `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL` | Holiday form "Generate with Claude" | Drafting the holiday greeting from the marked dates (the button shows a friendly message if unset) |
 
 Full reference with comments: see `.env.example` in the repo root.
 
@@ -55,8 +54,7 @@ the exact spot.
 - **Live Dashboard pricing/packaging.** The FAQ "Is it included with my phone
   service?" is a placeholder until you confirm pricing/packaging.
 - **Privacy Policy legal review.** The policy was rebuilt structurally from
-  the old site's sections plus the sections you asked for (cookies, analytics,
-  voice demo recording). **It has not been reviewed by a lawyer.** Please have
+  the old site's sections plus the sections you asked for (cookies, analytics). **It has not been reviewed by a lawyer.** Please have
   counsel review before this goes live.
 - ~~**Logo image.**~~ Resolved — found the real Lion Switch logo mark
   (`lionswitch-dashboard/public/email-logo.png`, already used in your
@@ -67,11 +65,6 @@ the exact spot.
 - **Walkthrough video.** The Live Dashboard page has a placeholder slot for a
   short walkthrough video. Supply a video file (or a hosted URL) and we'll
   embed it lazy-loaded.
-- **Sample call audio.** The homepage/`/mcp` voice demo's "sample call" option
-  currently shows a written example transcript (clearly labeled as an
-  example, not a real customer) so visitors without a microphone can still
-  try the "ask Claude" feature. If you'd like them to also hear real audio,
-  supply a short recorded sample call.
 - **Geo-coordinates.** The LocalBusiness structured data doesn't include a
   map pin (latitude/longitude) for the Brooklyn office. Low priority, but easy
   to add if you want it.
@@ -106,8 +99,7 @@ Suggested cutover sequence:
    Next.js; Render/other Node hosts work too) on a staging URL first.
 2. Set all the environment variables from Section 1 on that host.
 3. Do a final click-through on staging: submit each form for real, confirm
-   emails arrive, confirm the Sheets webhooks add rows, try the voice demo
-   with real API keys.
+   emails arrive, confirm the Sheets webhooks add rows.
 4. Point `lionswitch.com` / `www.lionswitch.com` DNS (A/CNAME, per your host's
    instructions) at the new deployment.
 5. Keep the old site/hosting available (don't delete it) for a week or two
@@ -143,6 +135,6 @@ Suggested cutover sequence:
   URL or Lighthouse itself).
 - The actual email/Sheets integrations, since no SMTP credentials or webhook
   URLs were available in this environment — verify these for real on staging.
-- The voice demo's transcription and Claude Q&A features with real API keys.
+- The holiday form's "Generate with Claude" greeting with a real API key.
 - A real accessibility audit with a screen reader (automated checks don't
   catch everything).

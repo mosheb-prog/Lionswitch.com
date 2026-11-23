@@ -4,14 +4,14 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Faq } from "@/components/ui/Faq";
 import { Reveal } from "@/components/ui/Reveal";
-import { VoiceDemo } from "@/components/voice-demo/VoiceDemo";
+import { McpFlow } from "@/components/mcp/McpFlow";
 import { JsonLd, breadcrumbSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = pageMetadata({
-  title: "MCP — Connect Your Calls to Claude",
+  title: "MCP — Connect Your Calls to Any AI",
   description:
-    "Lion Switch connects your call data to Claude through MCP (Model Context Protocol). Calls are transcribed after they end — ask Claude anything about any call.",
+    "Lion Switch connects your call data to any AI assistant that supports MCP (Model Context Protocol). Calls are transcribed after they end — then ask your AI anything about any call.",
   path: "/mcp",
 });
 
@@ -22,8 +22,8 @@ const STEPS = [
     body: "Once the call ends, Lion Switch transcribes it. Nothing is transcribed live.",
   },
   {
-    title: "Ask Claude",
-    body: "Ask Claude anything about that call — summaries, action items, mood, and more.",
+    title: "Ask your AI",
+    body: "Ask any AI assistant that supports MCP about that call — summaries, action items, mood, and more.",
   },
 ];
 
@@ -40,17 +40,22 @@ const FAQ_ITEMS = [
   {
     question: "What is MCP?",
     answer:
-      "MCP (Model Context Protocol) is a standard way to connect an AI assistant like Claude to real data sources. Lion Switch uses it to connect your finished call transcripts to Claude, so you can ask questions about your calls in plain English.",
+      "MCP (Model Context Protocol) is an open standard for connecting AI assistants to real data sources. Lion Switch uses it to connect your finished call data to the AI assistant of your choice, as long as it supports MCP, so you can ask questions about your calls in plain English.",
   },
   {
     question: "Is any of this live?",
     answer:
-      "No. Calls are transcribed only after they end. Claude only ever sees a finished transcript — never a call in progress.",
+      "No. Calls are transcribed only after they end. Your AI only ever sees a finished transcript — never a call in progress.",
   },
   {
     question: "Where can call data be sent?",
     answer:
       "Call data and AI-generated summaries can be routed to your CRM, Slack, email, Google Sheets, webhooks, or other tools you already use.",
+  },
+  {
+    question: "Can the AI change my phone system?",
+    answer:
+      "No. The MCP connection is read-only. Your AI can answer questions about your call data, but it can't change phone settings.",
   },
 ];
 
@@ -70,12 +75,12 @@ export default function McpPage() {
             as="h1"
             dark
             eyebrow="MCP Integration"
-            title="Your phone calls, now connected to Claude."
-            description="Lion Switch connects to Claude through MCP (Model Context Protocol). Calls are transcribed after they end, and you can ask Claude anything about any call."
+            title="Your phone calls, now connected to AI."
+            description="Lion Switch connects to any AI assistant that supports MCP (Model Context Protocol). Calls are transcribed after they end, and you can ask your AI anything about any call."
           />
         </div>
         <div className="hero-in mt-12" style={{ animationDelay: "120ms" }}>
-          <VoiceDemo />
+          <McpFlow />
         </div>
       </Section>
 
@@ -100,7 +105,7 @@ export default function McpPage() {
 
       <Section className="bg-soft">
         <Reveal>
-          <SectionHeading eyebrow="Use Cases" title="What you can ask Claude" />
+          <SectionHeading eyebrow="Use Cases" title="What you can ask your AI" />
         </Reveal>
         <Reveal delayMs={80}>
           <ul className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">

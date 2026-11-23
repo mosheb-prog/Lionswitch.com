@@ -216,19 +216,6 @@
   }
 }
 
-/* Idle "ready to listen" pulse for the voice-demo mic button. */
-@keyframes mic-pulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-orange) 35%, transparent);
-  }
-  50% {
-    box-shadow: 0 0 0 16px color-mix(in srgb, var(--color-orange) 0%, transparent);
-  }
-}
-.mic-pulse {
-  animation: mic-pulse 2.4s ease-out infinite;
-}
-
 /* Hero "call journey" illustration (HeroJourney.tsx). */
 @keyframes journey-card-in {
   from {

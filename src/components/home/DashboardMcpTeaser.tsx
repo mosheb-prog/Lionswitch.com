@@ -32,11 +32,11 @@ export function DashboardMcpTeaser() {
               MCP Integration
             </p>
             <h3 className="mt-2 font-[family-name:var(--font-heading)] text-2xl font-bold text-ink">
-              Your phone calls, now connected to Claude.
+              Your phone calls, now connected to AI.
             </h3>
             <p className="mt-3 text-muted">
-              Every call is transcribed after it ends. Ask Claude anything about
-              it — summaries, action items, caller mood, and more.
+              Every call is transcribed after it ends. Connect any AI assistant that
+              supports MCP and ask it anything — summaries, action items, caller mood, and more.
             </p>
             <Button href="/mcp" variant="ghost" className="mt-6">
               Explore the MCP integration

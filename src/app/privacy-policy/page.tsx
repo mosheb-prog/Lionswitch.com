@@ -99,16 +99,6 @@ export default function PrivacyPolicyPage() {
             </p>
           </PolicySection>
 
-          <PolicySection title="Voice Demo Recording">
-            <p>
-              The &ldquo;Talk to Lion Switch&rdquo; voice demo on our homepage and
-              MCP page records audio only when you choose to use it, and
-              only for the duration of that demo. The recording is used
-              solely to generate a transcript and an AI-assisted summary
-              for your own demo session. Calls are transcribed only after
-              you finish speaking — never live.
-            </p>
-          </PolicySection>
 
           <PolicySection title="Your Access to and Control Over Information">
             <p>You may at any time:</p>

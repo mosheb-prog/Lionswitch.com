@@ -27,15 +27,14 @@ npm run lint    # eslint
 
 - `src/app/` — pages and API routes (Next.js App Router)
 - `src/components/` — UI, grouped by the page/feature they belong to
-  (`home/`, `features/`, `contact/`, `holiday-preferences/`, `voice-demo/`,
+  (`home/`, `features/`, `contact/`, `holiday-preferences/`, `mcp/`,
   `live-dashboard/`, `layout/`, `ui/`)
 - `src/lib/` — shared logic: company facts & nav (`constants.ts`), JSON-LD
   builders (`schema.tsx`), SEO metadata helper (`metadata.ts`), OG image
   generator (`og.tsx`), email (`email.ts`), Google Sheets webhook poster
   (`sheets.ts`), rate limiting (`rate-limit.ts`), cookie consent
   (`consent.ts`), Jewish/US holiday date computation (`jewish-holidays.ts`,
-  `us-holidays.ts`), voice-demo transcription/Claude helpers
-  (`transcription.ts`, `claude.ts`)
+  `us-holidays.ts`)
 
 ## Design tokens
 

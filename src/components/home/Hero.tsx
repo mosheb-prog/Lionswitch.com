@@ -46,7 +46,7 @@ export function Hero() {
           <div className="hero-in" style={{ animationDelay: "200ms" }}>
             <HeroJourney />
             <p className="mt-3 text-center text-[11px] text-on-dark-2/80 lg:text-left">
-              Illustration with fictional sample data. Transcription and the Claude connection are
+              Illustration with fictional sample data. Transcription and the AI connection are
               optional add-ons.
             </p>
           </div>

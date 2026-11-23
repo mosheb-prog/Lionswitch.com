@@ -4,7 +4,7 @@ import { ReactNode, useEffect, useState, useSyncExternalStore } from "react";
 
 // A purely visual, looping illustration of how a call flows through Lion
 // Switch: call ends -> AI transcript + summary -> dashboard updates -> ask
-// Claude. Fictional sample data only; nothing here talks to a backend.
+// an AI assistant (via MCP). Fictional sample data only; nothing here talks to a backend.
 
 type Step = 0 | 1 | 2 | 3;
 type Phase = { step: Step; reveal: number; travel?: boolean; fade?: boolean; ms: number };
@@ -63,7 +63,7 @@ const NODES: { label: string; icon: ReactNode }[] = [
     ),
   },
   {
-    label: "Ask Claude",
+    label: "Ask your AI",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden="true">
         <path
@@ -244,10 +244,10 @@ function DashboardCard({ reveal }: { reveal: number }) {
   );
 }
 
-function ClaudeCard({ reveal }: { reveal: number }) {
+function AiCard({ reveal }: { reveal: number }) {
   return (
     <div>
-      <CardHeader title="Ask Claude" chip={<Chip>Optional · read-only</Chip>} />
+      <CardHeader title="Ask your AI" chip={<Chip>Optional · read-only</Chip>} />
       <div className="mt-3 space-y-2">
         <Shown when={reveal >= 0} className="flex justify-end">
           <p className="max-w-[85%] rounded-2xl rounded-br-md bg-orange px-3 py-2 text-xs font-semibold text-ink">
@@ -274,7 +274,7 @@ function ClaudeCard({ reveal }: { reveal: number }) {
         </Shown>
       </div>
       <p className="mt-3 text-[10px] text-on-dark-2/80">
-        Claude reads call data only — it can&apos;t change phone settings.
+        Your AI reads call data only — it can&apos;t change phone settings.
       </p>
     </div>
   );
@@ -284,7 +284,7 @@ function StepContent({ step, reveal }: { step: Step; reveal: number }) {
   if (step === 0) return <CallCard reveal={reveal} />;
   if (step === 1) return <TranscriptCard reveal={reveal} />;
   if (step === 2) return <DashboardCard reveal={reveal} />;
-  return <ClaudeCard reveal={reveal} />;
+  return <AiCard reveal={reveal} />;
 }
 
 function Rail({ activeStep, fillTo, travelling, instant }: {
@@ -389,7 +389,7 @@ export function HeroJourney() {
       <div aria-hidden="true" className="tech-grid pointer-events-none absolute inset-0" />
       <p className="sr-only">
         Illustration: after a call ends, the recording is transcribed and summarized, the Lion
-        Switch dashboard updates, and you can ask Claude which calls need a follow-up.
+        Switch dashboard updates, and you can ask your AI which calls need a follow-up.
       </p>
 
       <div aria-hidden="true" className="relative">

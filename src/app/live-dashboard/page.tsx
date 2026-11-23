@@ -50,9 +50,9 @@ const FAQ_ITEMS = [
     answer: "Yes — scheduled daily, weekly and monthly reports can be emailed to whoever you choose.",
   },
   {
-    question: "Does it work with Claude / MCP?",
+    question: "Does it work with AI / MCP?",
     answer:
-      "Yes. Call data and AI-generated summaries can be sent to Claude, your CRM, Slack, Google Sheets, email or webhooks through our MCP integration.",
+      "Yes. Call data and AI-generated summaries can be sent to any AI assistant that supports MCP, your CRM, Slack, Google Sheets, email or webhooks through our MCP integration.",
   },
   {
     question: "Is it included with my phone service?",
@@ -151,7 +151,7 @@ export default function LiveDashboardPage() {
             transcripts.
           </FeatureCard>
           <FeatureCard icon={<SparkleIcon />} title="AI after-call tools" delayMs={60}>
-            Summaries, action items and sentiment — plus &ldquo;Ask Claude about this
+            Summaries, action items and sentiment — plus &ldquo;Ask AI about this
             call.&rdquo; Calls are transcribed after they end, never live.
           </FeatureCard>
           <FeatureCard icon={<MailIcon />} title="Scheduled reports" delayMs={120}>
@@ -174,7 +174,7 @@ export default function LiveDashboardPage() {
             .
           </FeatureCard>
           <FeatureCard icon={<SendIcon />} title="Send your data anywhere (MCP)" delayMs={0}>
-            Connect call data to Claude, Slack, your CRM, Google Sheets, email,
+            Connect call data to any MCP-compatible AI, Slack, your CRM, Google Sheets, email,
             Zapier, or your own tools.
           </FeatureCard>
           <FeatureCard icon={<ShieldIcon />} title="Security and access" delayMs={60}>

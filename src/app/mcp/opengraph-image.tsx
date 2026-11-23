@@ -6,7 +6,7 @@ export const alt = "Lion Switch MCP Integration";
 
 export default function Image() {
   return createOgImage(
-    "Your calls, now connected to Claude.",
-    "Calls are transcribed after they end. Ask Claude anything about any call.",
+    "Your calls, now connected to AI.",
+    "Calls are transcribed after they end. Ask any MCP-compatible AI about any call.",
   );
 }
