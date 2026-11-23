@@ -4,6 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Faq } from "@/components/ui/Faq";
+import { Reveal } from "@/components/ui/Reveal";
 import { DashboardMock } from "@/components/live-dashboard/DashboardMock";
 import { FeatureCard } from "@/components/live-dashboard/FeatureCard";
 import {
@@ -80,27 +81,26 @@ export default function LiveDashboardPage() {
       />
 
       <section className="relative overflow-hidden bg-ink text-on-dark">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(circle at 15% 15%, rgba(245,138,11,0.2), transparent 50%)",
-          }}
-        />
+        <div aria-hidden="true" className="ambient-glow tech-grid pointer-events-none absolute inset-0" />
         <div className="relative mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-orange-3">
+            <p className="hero-in text-xs font-bold uppercase tracking-[0.2em] text-orange-3">
               Live Dashboard
             </p>
-            <h1 className="mt-4 font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight sm:text-5xl">
+            <h1
+              className="hero-in mt-4 font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight sm:text-5xl"
+              style={{ animationDelay: "80ms" }}
+            >
               See every call, live.
             </h1>
-            <p className="mt-6 text-lg text-on-dark-2">
+            <p className="hero-in mt-6 text-lg text-on-dark-2" style={{ animationDelay: "160ms" }}>
               A live call dashboard with advanced reporting, built for Lion Switch
               customers.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <div
+              className="hero-in mt-8 flex flex-wrap items-center justify-center gap-4"
+              style={{ animationDelay: "240ms" }}
+            >
               <Button href="/contact#demo" variant="primary">
                 Schedule a Free Demo
               </Button>
@@ -113,67 +113,71 @@ export default function LiveDashboardPage() {
             </div>
           </div>
 
-          <div className="mt-14">
+          <div className="hero-in mt-14" style={{ animationDelay: "320ms" }}>
             <DashboardMock />
           </div>
         </div>
       </section>
 
       <Section>
-        <SectionHeading
-          eyebrow="Why it beats the carrier portal"
-          title="Simple, fast, and built for business owners — not engineers"
-          description="Most carrier portals are built for telecom technicians. The Lion Switch live dashboard is built for the person running the business."
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="Why it beats the carrier portal"
+            title="Simple, fast, and built for business owners — not engineers"
+            description="Most carrier portals are built for telecom technicians. The Lion Switch live dashboard is built for the person running the business."
+          />
+        </Reveal>
       </Section>
 
       <Section id="features" className="bg-soft">
-        <SectionHeading eyebrow="Features" title="Everything you need to run your phones" />
+        <Reveal>
+          <SectionHeading eyebrow="Features" title="Everything you need to run your phones" />
+        </Reveal>
         <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          <FeatureCard icon={<PhoneIcon />} title="Live call board">
+          <FeatureCard icon={<PhoneIcon />} title="Live call board" delayMs={0}>
             See active calls in real time — caller, who&apos;s handling it, direction,
             and duration.
           </FeatureCard>
-          <FeatureCard icon={<TvIcon />} title="Call-center wallboard / TV mode">
+          <FeatureCard icon={<TvIcon />} title="Call-center wallboard / TV mode" delayMs={60}>
             Queues, callers waiting, longest wait, agent status, answered and
             abandoned calls, and service level — full-screen for a wall TV.
           </FeatureCard>
-          <FeatureCard icon={<ChartIcon />} title="Advanced reporting">
+          <FeatureCard icon={<ChartIcon />} title="Advanced reporting" delayMs={120}>
             Filter by date, user, queue, department, number and direction. Export
             to CSV and PDF, with per-agent leaderboards and period comparisons.
           </FeatureCard>
-          <FeatureCard icon={<HistoryIcon />} title="Call history">
+          <FeatureCard icon={<HistoryIcon />} title="Call history" delayMs={0}>
             Searchable and filterable call history with recordings and after-call
             transcripts.
           </FeatureCard>
-          <FeatureCard icon={<SparkleIcon />} title="AI after-call tools">
+          <FeatureCard icon={<SparkleIcon />} title="AI after-call tools" delayMs={60}>
             Summaries, action items and sentiment — plus &ldquo;Ask Claude about this
             call.&rdquo; Calls are transcribed after they end, never live.
           </FeatureCard>
-          <FeatureCard icon={<MailIcon />} title="Scheduled reports">
+          <FeatureCard icon={<MailIcon />} title="Scheduled reports" delayMs={120}>
             Daily, weekly and monthly reports emailed in a readable format to
             whoever you choose.
           </FeatureCard>
-          <FeatureCard icon={<BellIcon />} title="Smart alerts">
+          <FeatureCard icon={<BellIcon />} title="Smart alerts" delayMs={0}>
             Set thresholds — callers waiting too long, a missed-call spike, no
             agents in a queue, after-hours calls — and get notified by email, text
             or Slack.
           </FeatureCard>
-          <FeatureCard icon={<VoicemailIcon />} title="Missed calls & voicemail center">
+          <FeatureCard icon={<VoicemailIcon />} title="Missed calls & voicemail center" delayMs={60}>
             A call-back list with status, so nothing falls through the cracks.
           </FeatureCard>
-          <FeatureCard icon={<UsersIcon />} title="Users, numbers & queues">
+          <FeatureCard icon={<UsersIcon />} title="Users, numbers & queues" delayMs={120}>
             An overview of users, numbers, queues and call flows, plus{" "}
             <Link href="/holiday-preferences" className="text-label underline">
               holiday schedule status
             </Link>
             .
           </FeatureCard>
-          <FeatureCard icon={<SendIcon />} title="Send your data anywhere (MCP)">
+          <FeatureCard icon={<SendIcon />} title="Send your data anywhere (MCP)" delayMs={0}>
             Connect call data to Claude, Slack, your CRM, Google Sheets, email,
             Zapier, or your own tools.
           </FeatureCard>
-          <FeatureCard icon={<ShieldIcon />} title="Security and access">
+          <FeatureCard icon={<ShieldIcon />} title="Security and access" delayMs={60}>
             Separate logins per customer, roles (owner, admin, viewer), MFA, and
             audit logs.
             {/* TODO(owner): do not claim HIPAA compliance for the dashboard
@@ -183,48 +187,55 @@ export default function LiveDashboardPage() {
       </Section>
 
       <Section>
-        <SectionHeading eyebrow="Who it's for" title="Built for any business that lives on the phone" />
+        <Reveal>
+          <SectionHeading eyebrow="Who it's for" title="Built for any business that lives on the phone" />
+        </Reveal>
         <ul className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 text-center sm:grid-cols-4">
           {["Offices", "Medical & dental practices", "Skilled nursing facilities", "Call centers"].map(
-            (item) => (
-              <li
-                key={item}
-                className="rounded-2xl border border-line bg-white px-4 py-5 text-sm font-semibold text-ink"
-              >
-                {item}
-              </li>
+            (item, i) => (
+              <Reveal key={item} delayMs={i * 70}>
+                <li className="hover-lift rounded-2xl border border-line bg-white px-4 py-5 text-sm font-semibold text-ink">
+                  {item}
+                </li>
+              </Reveal>
             ),
           )}
         </ul>
       </Section>
 
       <Section className="bg-soft">
-        <SectionHeading
-          eyebrow="See It In Action"
-          title="A quick walkthrough"
-          description="TODO(owner): drop in a short walkthrough video and we'll embed it here, lazy-loaded."
-        />
-        <div className="mx-auto mt-10 aspect-video max-w-3xl rounded-3xl border border-dashed border-soft-border bg-white grid place-items-center text-sm text-muted">
-          Walkthrough video placeholder
-        </div>
+        <Reveal>
+          <SectionHeading
+            eyebrow="See It In Action"
+            title="A quick walkthrough"
+            description="TODO(owner): drop in a short walkthrough video and we'll embed it here, lazy-loaded."
+          />
+          <div className="mx-auto mt-10 aspect-video max-w-3xl rounded-3xl border border-dashed border-soft-border bg-white grid place-items-center text-sm text-muted">
+            Walkthrough video placeholder
+          </div>
+        </Reveal>
       </Section>
 
       <Section>
-        <SectionHeading eyebrow="FAQ" title="Frequently asked questions" />
-        <div className="mt-12">
+        <Reveal>
+          <SectionHeading eyebrow="FAQ" title="Frequently asked questions" />
+        </Reveal>
+        <Reveal delayMs={80} className="mt-12">
           <Faq items={FAQ_ITEMS} />
-        </div>
+        </Reveal>
       </Section>
 
-      <Section dark className="text-center">
-        <h2 className="font-[family-name:var(--font-heading)] text-3xl font-bold">
-          See the live dashboard on a real demo
-        </h2>
-        <div className="mt-8 flex justify-center">
-          <Button href="/contact#demo" variant="primary">
-            Schedule a Free Demo
-          </Button>
-        </div>
+      <Section dark glow className="text-center">
+        <Reveal>
+          <h2 className="font-[family-name:var(--font-heading)] text-3xl font-bold">
+            See the live dashboard on a real demo
+          </h2>
+          <div className="mt-8 flex justify-center">
+            <Button href="/contact#demo" variant="primary">
+              Schedule a Free Demo
+            </Button>
+          </div>
+        </Reveal>
       </Section>
     </>
   );

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/metadata";
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { Reveal } from "@/components/ui/Reveal";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { MapEmbed } from "@/components/contact/MapEmbed";
 import { CalendlyEmbed } from "@/components/contact/CalendlyEmbed";
@@ -35,16 +36,16 @@ export default function ContactPage() {
 
       <Section>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-          <div>
+          <Reveal>
             <h2 className="font-[family-name:var(--font-heading)] text-xl font-bold text-ink">
               Send us a message
             </h2>
             <div className="mt-6">
               <ContactForm />
             </div>
-          </div>
+          </Reveal>
 
-          <div className="space-y-8">
+          <Reveal delayMs={100} className="space-y-8">
             <div>
               <h2 className="font-[family-name:var(--font-heading)] text-xl font-bold text-ink">
                 Get in touch
@@ -86,18 +87,20 @@ export default function ContactPage() {
             </div>
 
             <MapEmbed />
-          </div>
+          </Reveal>
         </div>
       </Section>
 
       <Section className="bg-soft">
-        <SectionHeading
-          eyebrow="Schedule a Demo"
-          title="Pick a time that works for you"
-        />
-        <div className="mx-auto mt-10 max-w-3xl">
-          <CalendlyEmbed />
-        </div>
+        <Reveal>
+          <SectionHeading
+            eyebrow="Schedule a Demo"
+            title="Pick a time that works for you"
+          />
+          <div className="mx-auto mt-10 max-w-3xl">
+            <CalendlyEmbed />
+          </div>
+        </Reveal>
       </Section>
     </>
   );

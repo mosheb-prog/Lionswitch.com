@@ -62,13 +62,14 @@ export function DashboardMock() {
   return (
     <div
       aria-hidden="true"
-      className="glass-card glow-orange rounded-3xl p-5 text-on-dark sm:p-6"
+      className="glass-card glow-orange relative overflow-hidden rounded-3xl p-5 text-on-dark sm:p-6"
     >
-      <p className="mb-4 text-center text-[11px] font-bold uppercase tracking-[0.15em] text-orange-3">
+      <div className="tech-grid pointer-events-none absolute inset-0" />
+      <p className="relative mb-4 text-center text-[11px] font-bold uppercase tracking-[0.15em] text-orange-3">
         Illustrative sample data — not a real customer&apos;s calls
       </p>
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <div className="relative grid grid-cols-2 gap-3 sm:grid-cols-4">
         {QUEUE_STATS.map((s) => (
           <div key={s.label} className="rounded-2xl bg-white/5 p-3 text-center">
             <p className="font-[family-name:var(--font-heading)] text-2xl font-bold tabular-nums">
@@ -81,7 +82,7 @@ export function DashboardMock() {
         ))}
       </div>
 
-      <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-5">
+      <div className="relative mt-4 grid grid-cols-1 gap-4 lg:grid-cols-5">
         <div className="rounded-2xl bg-white/5 p-4 lg:col-span-3">
           <h3 className="text-xs font-bold uppercase tracking-wider text-on-dark-2">
             Live Calls

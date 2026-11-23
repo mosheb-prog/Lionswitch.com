@@ -142,7 +142,7 @@ export function VoiceDemo() {
             type="button"
             onClick={startRecording}
             aria-label="Start talking to Lion Switch"
-            className="grid h-24 w-24 place-items-center rounded-full bg-orange text-ink shadow-[0_0_0_8px_rgba(245,138,11,0.15)] transition-transform hover:scale-105 focus-visible:scale-105"
+            className="mic-pulse grid h-24 w-24 place-items-center rounded-full bg-orange text-ink transition-transform hover:scale-105 focus-visible:scale-105"
           >
             <MicIcon className="h-10 w-10" />
           </button>

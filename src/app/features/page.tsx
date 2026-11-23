@@ -4,6 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { FeatureSection, FeatureList } from "@/components/features/FeatureSection";
 import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
 import { JsonLd, breadcrumbSchema } from "@/lib/schema";
 import { COMPANY, STATS, SITE_URL } from "@/lib/constants";
 
@@ -186,21 +187,26 @@ export default function FeaturesPage() {
       </FeatureSection>
 
       <Section>
-        <div className="rounded-3xl bg-ink p-10 text-center text-on-dark">
-          <h2 className="font-[family-name:var(--font-heading)] text-2xl font-bold">
-            Live Dashboard
-          </h2>
-          <p className="mx-auto mt-2 max-w-xl text-on-dark-2">
-            A live, easy-to-use dashboard for every call — queues, agents,
-            reporting and more.
-          </p>
-          <Link
-            href="/live-dashboard"
-            className="mt-6 inline-flex rounded-full bg-orange px-6 py-3 text-sm font-semibold font-[family-name:var(--font-heading)] text-ink hover:bg-orange-3"
-          >
-            See the Live Dashboard
-          </Link>
-        </div>
+        <Reveal>
+          <div className="relative overflow-hidden rounded-3xl bg-ink p-10 text-center text-on-dark">
+            <div aria-hidden="true" className="ambient-glow tech-grid absolute inset-0" />
+            <div className="relative">
+              <h2 className="font-[family-name:var(--font-heading)] text-2xl font-bold">
+                Live Dashboard
+              </h2>
+              <p className="mx-auto mt-2 max-w-xl text-on-dark-2">
+                A live, easy-to-use dashboard for every call — queues, agents,
+                reporting and more.
+              </p>
+              <Link
+                href="/live-dashboard"
+                className="mt-6 inline-flex rounded-full bg-orange px-6 py-3 text-sm font-semibold font-[family-name:var(--font-heading)] text-ink shadow-[0_0_0_0_rgba(245,138,11,0)] transition-[background-color,box-shadow,transform] hover:-translate-y-0.5 hover:bg-orange-3 hover:shadow-[0_8px_28px_-6px_rgba(245,138,11,0.65)]"
+              >
+                See the Live Dashboard
+              </Link>
+            </div>
+          </div>
+        </Reveal>
       </Section>
     </>
   );

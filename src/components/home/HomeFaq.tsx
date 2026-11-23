@@ -1,5 +1,6 @@
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Faq } from "@/components/ui/Faq";
+import { Reveal } from "@/components/ui/Reveal";
 
 const ITEMS = [
   {
@@ -51,10 +52,12 @@ const ITEMS = [
 export function HomeFaq() {
   return (
     <Section id="faq">
-      <SectionHeading eyebrow="FAQ" title="Frequently asked questions" />
-      <div className="mt-12">
+      <Reveal>
+        <SectionHeading eyebrow="FAQ" title="Frequently asked questions" />
+      </Reveal>
+      <Reveal delayMs={80} className="mt-12">
         <Faq items={ITEMS} />
-      </div>
+      </Reveal>
     </Section>
   );
 }

@@ -1,4 +1,5 @@
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { Reveal } from "@/components/ui/Reveal";
 import { COMPANY } from "@/lib/constants";
 
 const ITEMS = [
@@ -47,18 +48,22 @@ const ITEMS = [
 export function FeatureHighlights() {
   return (
     <Section>
-      <SectionHeading
-        eyebrow="Everything in one platform"
-        title="Feature highlights"
-      />
+      <Reveal>
+        <SectionHeading
+          eyebrow="Everything in one platform"
+          title="Feature highlights"
+        />
+      </Reveal>
       <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {ITEMS.map((item) => (
-          <div key={item.title} className="rounded-2xl border border-line p-5">
-            <h3 className="font-[family-name:var(--font-heading)] text-base font-bold text-ink">
-              {item.title}
-            </h3>
-            <p className="mt-2 text-sm text-muted">{item.body}</p>
-          </div>
+        {ITEMS.map((item, i) => (
+          <Reveal key={item.title} delayMs={(i % 4) * 70}>
+            <div className="hover-lift h-full rounded-2xl border border-line bg-white p-5">
+              <h3 className="font-[family-name:var(--font-heading)] text-base font-bold text-ink">
+                {item.title}
+              </h3>
+              <p className="mt-2 text-sm text-muted">{item.body}</p>
+            </div>
+          </Reveal>
         ))}
       </div>
     </Section>

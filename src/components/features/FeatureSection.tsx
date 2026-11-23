@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function FeatureSection({
   id,
@@ -16,11 +17,13 @@ export function FeatureSection({
   return (
     <section id={id} className={`scroll-mt-24 py-14 ${alt ? "bg-soft" : ""}`}>
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-ink sm:text-3xl">
-          {title}
-        </h2>
-        {description ? <p className="mt-2 max-w-2xl text-muted">{description}</p> : null}
-        <div className="mt-8">{children}</div>
+        <Reveal>
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-ink sm:text-3xl">
+            {title}
+          </h2>
+          {description ? <p className="mt-2 max-w-2xl text-muted">{description}</p> : null}
+          <div className="mt-8">{children}</div>
+        </Reveal>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { pageMetadata } from "@/lib/metadata";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
 import { JsonLd, breadcrumbSchema, serviceSchema } from "@/lib/schema";
 import { SERVICES, SITE_URL } from "@/lib/constants";
 
@@ -62,7 +63,7 @@ async function ServiceDetailContent({ params }: { params: Params }) {
       </Section>
 
       <Section>
-        <div className="mx-auto max-w-2xl">
+        <Reveal className="mx-auto max-w-2xl">
           <h2 className="font-[family-name:var(--font-heading)] text-xl font-bold text-ink">
             What&apos;s included
           </h2>
@@ -84,7 +85,7 @@ async function ServiceDetailContent({ params }: { params: Params }) {
               See all services
             </Button>
           </div>
-        </div>
+        </Reveal>
       </Section>
     </>
   );

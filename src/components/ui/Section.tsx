@@ -6,22 +6,28 @@ export function Section({
   id,
   className = "",
   dark = false,
+  glow = false,
   containerClassName = "",
 }: {
   children: ReactNode;
   id?: string;
   className?: string;
   dark?: boolean;
+  /** Adds a slow-drifting ambient glow + faint tech-grid behind a dark section. */
+  glow?: boolean;
   containerClassName?: string;
 }) {
   return (
     <section
       id={id}
-      className={`scroll-mt-24 py-16 sm:py-20 lg:py-24 ${
+      className={`relative scroll-mt-24 overflow-hidden py-16 sm:py-20 lg:py-24 ${
         dark ? "bg-ink text-on-dark" : ""
       } ${className}`}
     >
-      <Container className={containerClassName}>{children}</Container>
+      {glow ? (
+        <div aria-hidden="true" className="ambient-glow tech-grid absolute inset-0" />
+      ) : null}
+      <Container className={`relative ${containerClassName}`}>{children}</Container>
     </section>
   );
 }

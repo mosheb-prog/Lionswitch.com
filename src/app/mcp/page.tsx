@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Faq } from "@/components/ui/Faq";
+import { Reveal } from "@/components/ui/Reveal";
 import { VoiceDemo } from "@/components/voice-demo/VoiceDemo";
 import { JsonLd, breadcrumbSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/constants";
@@ -63,66 +64,78 @@ export default function McpPage() {
         ])}
       />
 
-      <Section className="bg-ink text-on-dark">
-        <SectionHeading
-          as="h1"
-          dark
-          eyebrow="MCP Integration"
-          title="Your phone calls, now connected to Claude."
-          description="Lion Switch connects to Claude through MCP (Model Context Protocol). Calls are transcribed after they end, and you can ask Claude anything about any call."
-        />
-        <div className="mt-12">
+      <Section dark glow>
+        <div className="hero-in">
+          <SectionHeading
+            as="h1"
+            dark
+            eyebrow="MCP Integration"
+            title="Your phone calls, now connected to Claude."
+            description="Lion Switch connects to Claude through MCP (Model Context Protocol). Calls are transcribed after they end, and you can ask Claude anything about any call."
+          />
+        </div>
+        <div className="hero-in mt-12" style={{ animationDelay: "120ms" }}>
           <VoiceDemo />
         </div>
       </Section>
 
       <Section>
-        <SectionHeading eyebrow="How it works" title="Three steps" />
+        <Reveal>
+          <SectionHeading eyebrow="How it works" title="Three steps" />
+        </Reveal>
         <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-8 sm:grid-cols-3">
           {STEPS.map((step, i) => (
-            <div key={step.title} className="text-center">
-              <div className="mx-auto grid h-10 w-10 place-items-center rounded-full bg-orange font-[family-name:var(--font-heading)] font-bold text-ink">
+            <Reveal key={step.title} delayMs={i * 100} className="text-center">
+              <div className="mx-auto grid h-10 w-10 place-items-center rounded-full bg-orange font-[family-name:var(--font-heading)] font-bold text-ink shadow-[0_0_24px_-4px_rgba(245,138,11,0.6)]">
                 {i + 1}
               </div>
               <h2 className="mt-4 font-[family-name:var(--font-heading)] text-lg font-bold text-ink">
                 {step.title}
               </h2>
               <p className="mt-2 text-sm text-muted">{step.body}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </Section>
 
       <Section className="bg-soft">
-        <SectionHeading eyebrow="Use Cases" title="What you can ask Claude" />
-        <ul className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
-          {USE_CASES.map((item) => (
-            <li key={item} className="flex items-start gap-3 text-text">
-              <span aria-hidden="true" className="mt-1 text-orange">
-                &#9679;
-              </span>
-              {item}
-            </li>
-          ))}
-        </ul>
+        <Reveal>
+          <SectionHeading eyebrow="Use Cases" title="What you can ask Claude" />
+        </Reveal>
+        <Reveal delayMs={80}>
+          <ul className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
+            {USE_CASES.map((item) => (
+              <li key={item} className="flex items-start gap-3 text-text">
+                <span aria-hidden="true" className="mt-1 text-orange">
+                  &#9679;
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </Section>
 
       <Section>
-        <SectionHeading eyebrow="FAQ" title="Frequently asked questions" />
-        <div className="mt-12">
+        <Reveal>
+          <SectionHeading eyebrow="FAQ" title="Frequently asked questions" />
+        </Reveal>
+        <Reveal delayMs={80} className="mt-12">
           <Faq items={FAQ_ITEMS} />
-        </div>
+        </Reveal>
       </Section>
 
-      <Section dark className="text-center">
-        <h2 className="font-[family-name:var(--font-heading)] text-3xl font-bold">
-          See it on a real demo call
-        </h2>
-        <div className="mt-8 flex justify-center">
-          <Button href="/contact#demo" variant="primary">
-            Schedule a Free Demo
-          </Button>
-        </div>
+      <Section dark glow className="text-center">
+        <Reveal>
+          <h2 className="font-[family-name:var(--font-heading)] text-3xl font-bold">
+            See it on a real demo call
+          </h2>
+          <div className="mt-8 flex justify-center">
+            <Button href="/contact#demo" variant="primary">
+              Schedule a Free Demo
+            </Button>
+          </div>
+        </Reveal>
       </Section>
     </>
   );

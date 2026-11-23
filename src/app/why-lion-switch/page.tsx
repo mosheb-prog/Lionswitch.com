@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/metadata";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
 import { JsonLd, breadcrumbSchema } from "@/lib/schema";
 import { COMPANY, SITE_URL } from "@/lib/constants";
 
@@ -45,7 +46,7 @@ export default function WhyLionSwitchPage() {
         ])}
       />
 
-      <Section className="bg-ink text-on-dark">
+      <Section dark glow>
         <SectionHeading
           as="h1"
           dark
@@ -56,7 +57,7 @@ export default function WhyLionSwitchPage() {
       </Section>
 
       <Section className="max-w-3xl">
-        <div className="mx-auto max-w-3xl space-y-5 text-lg leading-relaxed text-text">
+        <Reveal className="mx-auto max-w-3xl space-y-5 text-lg leading-relaxed text-text">
           <p>
             {COMPANY.name} started the way a lot of good businesses start: with
             frustration. A family-run Brooklyn company, tired of the
@@ -71,35 +72,39 @@ export default function WhyLionSwitchPage() {
             terms and transparent pricing — not sales scripts and long hold
             times.
           </p>
-        </div>
+        </Reveal>
       </Section>
 
       <Section className="bg-soft">
-        <SectionHeading eyebrow="Why Choose Lion Switch" title="What makes us different" />
+        <Reveal>
+          <SectionHeading eyebrow="Why Choose Lion Switch" title="What makes us different" />
+        </Reveal>
         <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {POINTS.map((point) => (
-            <div key={point.title}>
+          {POINTS.map((point, i) => (
+            <Reveal key={point.title} delayMs={(i % 3) * 80}>
               <h2 className="font-[family-name:var(--font-heading)] text-lg font-bold text-ink">
                 {point.title}
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-muted">{point.body}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </Section>
 
-      <Section dark className="text-center">
-        <h2 className="font-[family-name:var(--font-heading)] text-3xl font-bold">
-          See the difference for yourself
-        </h2>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Button href="/contact#demo" variant="primary">
-            Schedule a Free Demo
-          </Button>
-          <Button href={COMPANY.phoneHref} variant="ghostOnDark">
-            {COMPANY.phoneDisplay}
-          </Button>
-        </div>
+      <Section dark glow className="text-center">
+        <Reveal>
+          <h2 className="font-[family-name:var(--font-heading)] text-3xl font-bold">
+            See the difference for yourself
+          </h2>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Button href="/contact#demo" variant="primary">
+              Schedule a Free Demo
+            </Button>
+            <Button href={COMPANY.phoneHref} variant="ghostOnDark">
+              {COMPANY.phoneDisplay}
+            </Button>
+          </div>
+        </Reveal>
       </Section>
     </>
   );

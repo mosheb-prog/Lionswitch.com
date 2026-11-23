@@ -10,8 +10,7 @@ export function organizationSchema() {
     "@id": `${SITE_URL}/#organization`,
     name: COMPANY.name,
     url: SITE_URL,
-    // TODO(owner): no logo image file exists yet — supply one (square,
-    // 112x112px minimum) and add it back here as `logo`.
+    logo: `${SITE_URL}/lion-switch-logo.png`,
     email: COMPANY.email,
     telephone: COMPANY.phoneHref.replace("tel:", ""),
     address: {
@@ -31,8 +30,7 @@ export function localBusinessSchema() {
     "@type": "LocalBusiness",
     "@id": `${SITE_URL}/#localbusiness`,
     name: COMPANY.name,
-    // TODO(owner): no logo/storefront image file exists yet — supply one
-    // and add it back here as `image`.
+    image: `${SITE_URL}/lion-switch-logo.png`,
     url: SITE_URL,
     telephone: COMPANY.phoneHref.replace("tel:", ""),
     email: COMPANY.email,

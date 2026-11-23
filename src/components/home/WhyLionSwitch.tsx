@@ -1,5 +1,6 @@
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
 
 const POINTS = [
   {
@@ -27,26 +28,30 @@ const POINTS = [
 export function WhyLionSwitch() {
   return (
     <Section className="bg-soft">
-      <SectionHeading
-        eyebrow="Why Lion Switch"
-        title="Because your business deserves better than a call center"
-        description="White-glove service from a family-run Brooklyn team."
-      />
+      <Reveal>
+        <SectionHeading
+          eyebrow="Why Lion Switch"
+          title="Because your business deserves better than a call center"
+          description="White-glove service from a family-run Brooklyn team."
+        />
+      </Reveal>
       <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {POINTS.map((point) => (
-          <div key={point.title}>
-            <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-ink">
-              {point.title}
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{point.body}</p>
-          </div>
+        {POINTS.map((point, i) => (
+          <Reveal key={point.title} delayMs={(i % 3) * 80}>
+            <div className="relative rounded-2xl border border-transparent p-1 transition-colors hover:border-orange/20">
+              <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-ink">
+                {point.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{point.body}</p>
+            </div>
+          </Reveal>
         ))}
       </div>
-      <div className="mt-12 text-center">
+      <Reveal className="mt-12 text-center">
         <Button href="/why-lion-switch" variant="ghost">
           Read our story
         </Button>
-      </div>
+      </Reveal>
     </Section>
   );
 }

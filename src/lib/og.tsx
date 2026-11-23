@@ -1,7 +1,13 @@
 import { ImageResponse } from "next/og";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { COMPANY } from "./constants";
 
 export const OG_SIZE = { width: 1200, height: 630 };
+
+const LOGO_DATA_URL = `data:image/png;base64,${readFileSync(
+  join(process.cwd(), "public", "lion-switch-logo.png"),
+).toString("base64")}`;
 
 // Shared Open Graph / Twitter card image template, built from the same
 // orange/ink/cream tokens as the rest of the site (no new colors).
@@ -22,22 +28,14 @@ export function createOgImage(title: string, subtitle?: string) {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div
-            style={{
-              display: "flex",
-              width: 56,
-              height: 56,
-              borderRadius: 14,
-              background: "#f79a12",
-              color: "#131820",
-              fontSize: 26,
-              fontWeight: 700,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            LS
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={LOGO_DATA_URL}
+            width={56}
+            height={56}
+            alt=""
+            style={{ borderRadius: 14 }}
+          />
           <div style={{ display: "flex", fontSize: 32, color: "#ffffff", fontWeight: 600 }}>
             {COMPANY.name}
           </div>

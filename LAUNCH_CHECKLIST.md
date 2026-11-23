@@ -58,12 +58,12 @@ the exact spot.
   the old site's sections plus the sections you asked for (cookies, analytics,
   voice demo recording). **It has not been reviewed by a lawyer.** Please have
   counsel review before this goes live.
-- **Logo image.** There's no logo image file in the project — the header/
-  footer currently use a text-based "LS" mark. The Organization/LocalBusiness
-  structured data also omits the `logo`/`image` field for the same reason
-  (rather than link to a file that doesn't exist). Supply a square logo
-  (ideally 512x512px or larger, PNG with transparency) and we'll wire it into
-  both the header and the structured data.
+- ~~**Logo image.**~~ Resolved — found the real Lion Switch logo mark
+  (`lionswitch-dashboard/public/email-logo.png`, already used in your
+  transactional emails) and wired it into the header, favicon, structured
+  data, and OG images (`public/lion-switch-logo.png`). It's 120x120px; if
+  you have a larger/sharper source file, swap it in for better quality at
+  large sizes, but it's not required.
 - **Walkthrough video.** The Live Dashboard page has a placeholder slot for a
   short walkthrough video. Supply a video file (or a hosted URL) and we'll
   embed it lazy-loaded.

@@ -2,15 +2,16 @@ import Link from "next/link";
 import { ReactNode } from "react";
 
 const BASE =
-  "inline-flex items-center justify-center gap-2 rounded-full font-semibold font-[family-name:var(--font-heading)] transition-colors duration-150 px-6 py-3 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed";
+  "inline-flex items-center justify-center gap-2 rounded-full font-semibold font-[family-name:var(--font-heading)] transition-[background-color,box-shadow,transform] duration-200 px-6 py-3 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 active:translate-y-0";
 
 const VARIANTS = {
-  primary: "bg-orange text-ink hover:bg-orange-3",
+  primary:
+    "bg-orange text-ink hover:bg-orange-3 shadow-[0_0_0_0_rgba(245,138,11,0)] hover:shadow-[0_8px_28px_-6px_rgba(245,138,11,0.65)]",
   dark: "bg-ink text-on-dark hover:bg-ink/90",
   ghost:
     "bg-transparent text-ink ring-1 ring-inset ring-soft-border hover:ring-orange",
   ghostOnDark:
-    "bg-transparent text-on-dark ring-1 ring-inset ring-white/25 hover:ring-orange",
+    "bg-transparent text-on-dark ring-1 ring-inset ring-white/25 hover:ring-orange hover:shadow-[0_8px_28px_-10px_rgba(245,138,11,0.5)]",
 } as const;
 
 type Variant = keyof typeof VARIANTS;
