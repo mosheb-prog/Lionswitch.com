@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { VoiceDemo } from "@/components/voice-demo/VoiceDemo";
 import { COMPANY } from "@/lib/constants";
 
 export function Hero() {
@@ -24,7 +26,7 @@ export function Hero() {
           Carrier-class business VoIP, UCaaS, contact center and messaging —
           delivered with white-glove service from a family-run Brooklyn team.
         </p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Button href="/contact#demo" variant="primary">
             Schedule a Free Demo
           </Button>
@@ -34,6 +36,20 @@ export function Hero() {
           <Button href={COMPANY.phoneHref} variant="dark" className="ring-1 ring-inset ring-white/15">
             {COMPANY.phoneDisplay}
           </Button>
+        </div>
+
+        <div className="mt-14">
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.15em] text-orange-3">
+            Talk to Lion Switch
+          </p>
+          <VoiceDemo />
+          <p className="mt-4 text-sm text-on-dark-2">
+            Powered by our{" "}
+            <Link href="/mcp" className="font-semibold text-orange-3 underline-offset-4 hover:underline">
+              Claude / MCP integration
+            </Link>
+            .
+          </p>
         </div>
       </Container>
     </section>
