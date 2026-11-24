@@ -14,18 +14,21 @@ export function Hero() {
             <p className="hero-in text-xs font-bold uppercase tracking-[0.2em] text-orange-3">
               Brooklyn, NY &middot; Family-Run Since Day One
             </p>
-            <h1
-              className="hero-in mx-auto mt-4 max-w-2xl font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight text-on-dark sm:text-5xl lg:mx-0 xl:text-6xl"
-              style={{ animationDelay: "80ms" }}
-            >
-              {COMPANY.name}: {COMPANY.tagline}
+            <h1 className="hero-in mx-auto mt-4 max-w-2xl lg:mx-0" style={{ animationDelay: "80ms" }}>
+              <span className="block font-[family-name:var(--font-heading)] text-base font-semibold text-on-dark-2 sm:text-lg">
+                {COMPANY.name}: {COMPANY.tagline}
+              </span>
+              <span className="mt-2 block font-[family-name:var(--font-heading)] text-5xl font-bold leading-[1.05] text-on-dark sm:text-6xl xl:text-7xl">
+                The future is{" "}
+                <span className="bg-gradient-to-r from-orange to-orange-3 bg-clip-text text-transparent">calling.</span>
+              </span>
             </h1>
             <p
               className="hero-in mx-auto mt-6 max-w-xl text-lg text-on-dark-2 sm:text-xl lg:mx-0"
               style={{ animationDelay: "160ms" }}
             >
-              Carrier-class business VoIP, UCaaS, contact center and messaging —
-              delivered with white-glove service from a family-run Brooklyn team.
+              Join forces with the future. Carrier-class business VoIP, UCaaS, contact center and messaging, now
+              teamed up with AI, delivered with white-glove service from a family-run Brooklyn team.
             </p>
             <div
               className="hero-in mt-8 flex flex-wrap items-center justify-center gap-4 lg:justify-start lg:gap-3"

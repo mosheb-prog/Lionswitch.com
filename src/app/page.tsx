@@ -5,6 +5,7 @@ import { AboutSummary } from "@/components/home/AboutSummary";
 import { StatsBar } from "@/components/home/StatsBar";
 import { ServicesOverview } from "@/components/home/ServicesOverview";
 import { WhyLionSwitch } from "@/components/home/WhyLionSwitch";
+import { FutureBand } from "@/components/home/FutureBand";
 import { FeatureHighlights } from "@/components/home/FeatureHighlights";
 import { DashboardMcpTeaser } from "@/components/home/DashboardMcpTeaser";
 import { ReadyToSwitchCta } from "@/components/home/ReadyToSwitchCta";
@@ -25,6 +26,7 @@ export default function Home() {
       <AboutSummary />
       <ServicesOverview />
       <WhyLionSwitch />
+      <FutureBand />
       <FeatureHighlights />
       <DashboardMcpTeaser />
       <ReadyToSwitchCta />
