@@ -28,21 +28,27 @@ export function PhoneShowcase() {
         </div>
       </div>
 
-      <div className="relative mx-auto w-full max-w-[460px]">
+      <div className="relative mx-auto w-full max-w-[480px] pb-[6%]">
         {/* spotlight */}
         <div
           aria-hidden="true"
-          className="absolute -inset-x-[12%] -inset-y-[30%] rounded-full bg-[radial-gradient(closest-side,rgba(148,163,184,0.38),rgba(148,163,184,0.12)_55%,transparent)]"
+          className="absolute -inset-x-[10%] -top-[25%] bottom-0 rounded-full bg-[radial-gradient(closest-side,rgba(148,163,184,0.34),rgba(148,163,184,0.10)_55%,transparent)]"
         />
-        {/* soft floor shadow */}
-        <div aria-hidden="true" className="absolute -bottom-[4%] left-[8%] right-[6%] h-[14%] rounded-[50%] bg-black/60 blur-xl" />
+        {/* the surface it sits on: a faint lit floor */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-[-6%] bottom-[2%] h-[22%] rounded-[50%] bg-[radial-gradient(closest-side,rgba(255,255,255,0.07),transparent)]"
+        />
+        {/* wide soft shadow + tight contact shadow under the base */}
+        <div aria-hidden="true" className="absolute bottom-[3%] left-[4%] right-[2%] h-[12%] rounded-[50%] bg-black/45 blur-2xl" />
+        <div aria-hidden="true" className="absolute bottom-[6%] left-[18%] right-[6%] h-[4%] rounded-[50%] bg-black/70 blur-md" />
         <Image
           src="/yealink-t85w.png"
           alt="Yealink T85W color-screen business desk phone"
-          width={486}
-          height={248}
-          sizes="(min-width: 768px) 460px, 90vw"
-          className="relative h-auto w-full [filter:brightness(1.1)_contrast(1.05)_drop-shadow(0_0_1px_rgba(255,255,255,0.35))]"
+          width={720}
+          height={421}
+          sizes="(min-width: 768px) 480px, 90vw"
+          className="relative h-auto w-full [filter:brightness(1.08)]"
         />
       </div>
     </div>
