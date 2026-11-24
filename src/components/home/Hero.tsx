@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { HeroJourney } from "@/components/home/HeroJourney";
-import { DeskScene } from "@/components/home/DeskScene";
+import { PhoneShowcase } from "@/components/home/PhoneShowcase";
 import { COMPANY } from "@/lib/constants";
 
 export function Hero() {
@@ -53,7 +53,7 @@ export function Hero() {
         </div>
 
         <div className="hero-in mt-20" style={{ animationDelay: "320ms" }}>
-          <DeskScene />
+          <PhoneShowcase />
         </div>
       </Container>
     </section>
