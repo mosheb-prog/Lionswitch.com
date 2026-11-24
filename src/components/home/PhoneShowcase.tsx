@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/Button";
 
 // The Yealink T85W product photo (supplied by Lion Switch, background removed)
 // on a dark card that matches the hero, with a soft spotlight behind the phone
@@ -18,14 +17,6 @@ export function PhoneShowcase() {
           Color-screen business desk phones, zero-touch provisioned by the Lion Switch team. Plug it in and it&apos;s
           ready with your lines and extensions.
         </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3 md:justify-start">
-          <Button href="/contact#demo" variant="primary">
-            Ask about desk phones
-          </Button>
-          <Button href="/features#devices" variant="ghostOnDark">
-            See all devices
-          </Button>
-        </div>
       </div>
 
       <div className="relative mx-auto w-full max-w-[480px] pb-[6%]">
