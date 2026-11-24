@@ -178,5 +178,38 @@ export function buildHolidaySubmission(input: HolidayFormInput) {
     additionalNotes: input.additionalNotes,
   };
 
-  return { fields, holidaySummary, dateCount: keys.length };
+  // Structured version for the Lion Switch dashboard's Holiday requests inbox.
+  const day = (k: DateKey, erev: boolean) => {
+    const c = pick(k);
+    return c.type === "custom"
+      ? { date: k, type: "custom" as const, openTime: c.openTime, closeTime: c.closeTime, erev }
+      : { date: k, type: "closed" as const, erev };
+  };
+  const dashboardGroups = [
+    ...groups.map((g) => ({
+      name: g.holidayName,
+      kind: g.holidayType === "Jewish Holiday" ? ("jewish" as const) : ("us" as const),
+      days: g.dates.map((k) => day(k, !!g.isErev.get(k))),
+    })),
+    ...(unmatched.length ? [{ name: "Other dates", kind: "other" as const, days: unmatched.map((k) => day(k, false)) }] : []),
+  ];
+  const dashboardPayload = {
+    firstName: input.firstName,
+    lastName: input.lastName,
+    companyName: input.companyName,
+    email: input.email,
+    groups: dashboardGroups,
+    officeClosed: input.officeClosed,
+    useStandardGreeting: input.useStandardGreeting,
+    customGreeting: input.customGreeting,
+    emergencyRouting: input.setUpEmergencyRouting,
+    forwardingType: input.forwardingType,
+    forwardingValue: input.forwardingValue,
+    emergencyNumber: input.genPhoneNumber,
+    voicemailDestination: input.voicemailDestination,
+    notes: input.additionalNotes,
+    summary: holidaySummary,
+  };
+
+  return { fields, holidaySummary, dateCount: keys.length, dashboardPayload };
 }

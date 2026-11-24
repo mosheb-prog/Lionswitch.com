@@ -15,7 +15,7 @@ variables are missing. But the features won't actually work until these are set.
 | `NEXT_PUBLIC_SITE_URL` | Canonical URLs, sitemap, JSON-LD | Should be `https://www.lionswitch.com` in production |
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `EMAIL_FROM` | Sending email | Contact form notifications, holiday preferences confirmation + notification emails |
 | `NEWSLETTER_SHEET_WEBHOOK_URL` | Google Apps Script webhook URL | Footer newsletter signups being stored anywhere |
-| `HOLIDAY_SHEET_WEBHOOK_URL` | Google Apps Script webhook URL (can be a different sheet than the newsletter one) | Holiday preferences submissions being stored anywhere |
+| `HOLIDAY_DASHBOARD_URL`, `HOLIDAY_INTAKE_SECRET` | The dashboard intake address (`https://<dashboard host>/api/intake/holiday-preferences`) and a shared random secret (set the same secret as `HOLIDAY_INTAKE_SECRET` on the dashboard service) | Holiday form submissions arriving in the dashboard's **Admin → Holiday requests** inbox |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics | Analytics (only loads after a visitor accepts cookies) |
 
 Full reference with comments: see `.env.example` in the repo root.

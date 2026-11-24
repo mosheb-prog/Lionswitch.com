@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getClientIp, rateLimit } from "@/lib/rate-limit";
 import { sendEmail } from "@/lib/email";
-import { postToSheetWebhook } from "@/lib/sheets";
 import { buildHolidaySubmission } from "@/lib/holiday-submission";
 import { COMPANY } from "@/lib/constants";
 
@@ -46,17 +45,45 @@ export async function POST(req: NextRequest) {
   const { phone_alt, ...input } = parsed.data;
   if (phone_alt.trim()) return NextResponse.json({ ok: true });
 
-  const { fields, holidaySummary, dateCount } = buildHolidaySubmission(input);
+  const { holidaySummary, dateCount, dashboardPayload } = buildHolidaySubmission(input);
 
-  // Same urlencoded fields the original form posted to its Apps Script.
-  await postToSheetWebhook("HOLIDAY_SHEET_WEBHOOK_URL", fields, "form");
+  // Main destination: the Holiday requests inbox in the Lion Switch dashboard (/admin).
+  const dashboard = await sendToDashboard(dashboardPayload);
 
-  await sendEmail({
+  const email = await sendEmail({
     to: COMPANY.email,
     replyTo: input.email,
     subject: `Holiday preferences: ${input.companyName} (${dateCount} date${dateCount === 1 ? "" : "s"})`,
     text: holidaySummary,
   });
 
+  // Only fail the visitor when a destination is set up and nothing got through,
+  // so a request is never silently lost (they can try again or call).
+  const configured = dashboard.configured || !!process.env.SMTP_HOST;
+  if (configured && !dashboard.sent && !email.sent) {
+    return NextResponse.json({ error: "Something went wrong. Please try again." }, { status: 502 });
+  }
   return NextResponse.json({ ok: true });
+}
+
+async function sendToDashboard(payload: Record<string, unknown>): Promise<{ configured: boolean; sent: boolean }> {
+  const url = process.env.HOLIDAY_DASHBOARD_URL;
+  const secret = process.env.HOLIDAY_INTAKE_SECRET;
+  if (!url || !secret) {
+    console.warn("[holiday] HOLIDAY_DASHBOARD_URL / HOLIDAY_INTAKE_SECRET not set — skipping dashboard delivery");
+    return { configured: false, sent: false };
+  }
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${secret}` },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!res.ok) console.error(`[holiday] dashboard intake responded ${res.status}`);
+    return { configured: true, sent: res.ok };
+  } catch (err) {
+    console.error("[holiday] dashboard intake failed", err);
+    return { configured: true, sent: false };
+  }
 }
