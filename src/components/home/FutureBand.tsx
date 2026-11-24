@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
+import { SignalBeacon, SignalNetwork } from "@/components/ui/SignalNetwork";
 import { ChartIcon, SparkleIcon, SendIcon } from "@/components/live-dashboard/icons";
 
 // Slogan band: "Team up with the future." Lion Switch phones working alongside AI.
@@ -27,14 +28,15 @@ const POINTS = [
 
 export function FutureBand() {
   return (
-    <section className="relative overflow-hidden bg-ink py-20 text-on-dark sm:py-28">
-      <div aria-hidden="true" className="ambient-glow tech-grid pointer-events-none absolute inset-0" />
+    <section className="signal-bg relative overflow-hidden bg-ink py-20 text-on-dark sm:py-28">
+      <SignalNetwork />
       <Container className="relative">
         <Reveal className="mx-auto max-w-3xl text-center">
+          <SignalBeacon className="mx-auto mb-10 mt-6" />
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-orange-3">The future is calling</p>
           <h2 className="mt-3 font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
             Team up with the{" "}
-            <span className="bg-gradient-to-r from-orange to-orange-3 bg-clip-text text-transparent">future.</span>
+            <span className="sig-sheen">future.</span>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg text-on-dark-2">
             Lion Switch puts AI in your corner. Your phone system and AI, working side by side, so every call turns

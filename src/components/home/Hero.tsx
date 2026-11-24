@@ -2,12 +2,13 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { HeroJourney } from "@/components/home/HeroJourney";
 import { PhoneShowcase } from "@/components/home/PhoneShowcase";
+import { SignalNetwork } from "@/components/ui/SignalNetwork";
 import { COMPANY } from "@/lib/constants";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-ink text-on-dark">
-      <div aria-hidden="true" className="ambient-glow tech-grid pointer-events-none absolute inset-0" />
+    <section className="signal-bg relative overflow-hidden bg-ink text-on-dark">
+      <SignalNetwork />
       <Container className="relative py-16 sm:py-24">
         <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-12">
           <div className="text-center lg:text-left">
@@ -20,7 +21,7 @@ export function Hero() {
               </span>
               <span className="mt-2 block font-[family-name:var(--font-heading)] text-5xl font-bold leading-[1.05] text-on-dark sm:text-6xl xl:text-7xl">
                 The future is{" "}
-                <span className="bg-gradient-to-r from-orange to-orange-3 bg-clip-text text-transparent">calling.</span>
+                <span className="sig-sheen">calling.</span>
               </span>
             </h1>
             <p
