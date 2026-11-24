@@ -45,7 +45,7 @@ function groupDates(keys: DateKey[]) {
   const owner = new Map<DateKey, { parent: string; isErev: boolean; jewish: boolean }>();
 
   for (const p of holidayOccurrences(lookupYears)) {
-    if (p.isJewish) {
+    if (p.askErev) {
       const erev = dayBefore(p.dates[0]);
       if (selected.has(erev)) owner.set(erev, { parent: p.label, isErev: true, jewish: true });
     }

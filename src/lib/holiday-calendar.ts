@@ -125,16 +125,18 @@ export function hebrewInfo(d: Date): { hebrewDay: number; hebrewMonth: string; h
   }
 }
 
-type JewishDef = { name: string; first: (desc: string) => boolean; last: (desc: string) => boolean };
+// erev: whether to ask about the day before (Erev Yom Tov). Purim is not Yom Tov, so no Erev question.
+type JewishDef = { name: string; first: (desc: string) => boolean; last: (desc: string) => boolean; erev: boolean };
 
-// The five Yom Tov presets offered on the live form. Ranges follow the
+// The Jewish holiday presets: the five Yom Tov groups from the live form, plus Purim. Ranges follow the
 // diaspora calendar (e.g. Sukkot = Sukkot I through Simchat Torah, 9 days).
 const JEWISH_DEFS: JewishDef[] = [
-  { name: "Rosh Hashanah", first: (s) => /^Rosh Hashana \d+$/.test(s), last: (s) => s === "Rosh Hashana II" },
-  { name: "Yom Kippur", first: (s) => s === "Yom Kippur", last: (s) => s === "Yom Kippur" },
-  { name: "Sukkot", first: (s) => s === "Sukkot I", last: (s) => s === "Simchat Torah" },
-  { name: "Pesach", first: (s) => s === "Pesach I", last: (s) => s === "Pesach VIII" },
-  { name: "Shavuot", first: (s) => s === "Shavuot I", last: (s) => s === "Shavuot II" },
+  { name: "Rosh Hashanah", first: (s) => /^Rosh Hashana \d+$/.test(s), last: (s) => s === "Rosh Hashana II", erev: true },
+  { name: "Yom Kippur", first: (s) => s === "Yom Kippur", last: (s) => s === "Yom Kippur", erev: true },
+  { name: "Sukkot", first: (s) => s === "Sukkot I", last: (s) => s === "Simchat Torah", erev: true },
+  { name: "Purim", first: (s) => s === "Purim", last: (s) => s === "Purim", erev: false },
+  { name: "Pesach", first: (s) => s === "Pesach I", last: (s) => s === "Pesach VIII", erev: true },
+  { name: "Shavuot", first: (s) => s === "Shavuot I", last: (s) => s === "Shavuot II", erev: true },
 ];
 
 export type HolidayPreset = {
@@ -142,6 +144,8 @@ export type HolidayPreset = {
   label: string;
   dates: DateKey[];
   isJewish: boolean;
+  /** Ask "Are you open on Erev Yom Tov?" when this is quick-added (Yom Tov only). */
+  askErev?: boolean;
 };
 
 const jewishCache = new Map<number, HolidayPreset[]>();
@@ -161,6 +165,7 @@ function jewishOccurrences(year: number): HolidayPreset[] {
       label: `${def.name} ${startDate.getFullYear()}`,
       dates: rangeKeys(startDate, end.getDate().greg()),
       isJewish: true,
+      askErev: def.erev,
     });
   }
   jewishCache.set(year, out);

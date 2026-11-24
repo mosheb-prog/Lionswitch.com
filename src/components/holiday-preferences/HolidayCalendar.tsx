@@ -44,7 +44,7 @@ function rangeLabel(dates: DateKey[], presets: HolidayPreset[]) {
   const sorted = [...dates].sort();
   // A preset holiday, optionally with its Erev day in front of it.
   const preset = presets.find((p) => {
-    const allowed = new Set(p.isJewish ? [dayBefore(p.dates[0]), ...p.dates] : p.dates);
+    const allowed = new Set(p.askErev ? [dayBefore(p.dates[0]), ...p.dates] : p.dates);
     return p.dates.every((d) => sorted.includes(d)) && sorted.every((d) => allowed.has(d));
   });
   if (preset) return preset.label;
@@ -206,7 +206,7 @@ export function HolidayCalendar({
       setRemoving(p);
       return;
     }
-    if (p.isJewish) {
+    if (p.isJewish && p.askErev) {
       setErevFor(p);
       setErevStep("ask");
       setErevOpen("9:00 AM");
@@ -228,7 +228,7 @@ export function HolidayCalendar({
   function confirmRemove() {
     if (!removing) return;
     removing.dates.forEach(onRemoveDate);
-    if (removing.isJewish) {
+    if (removing.askErev) {
       const erev = dayBefore(removing.dates[0]);
       if (selected.has(erev)) onRemoveDate(erev);
     }

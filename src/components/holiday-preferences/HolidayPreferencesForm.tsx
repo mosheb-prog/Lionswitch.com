@@ -4,7 +4,8 @@ import { FormEvent, useState, useSyncExternalStore } from "react";
 import { DateKey, toKey } from "@/lib/holiday-calendar";
 import type { DayChoice, HolidayFormInput } from "@/lib/holiday-submission";
 import { HolidayCalendar } from "./HolidayCalendar";
-import { Card, ContactValue, EmergencyHandling, EmergencyValue, OfficeSettings, OfficeValue, YourInformation } from "./FormSections";
+import { Card, ContactValue, EmergencyHandling, EmergencyValue, OfficeSettings, OfficeValue, ScheduleUpload, YourInformation } from "./FormSections";
+import { MAX_SCHEDULE_BYTES, MAX_SCHEDULE_FILES, SCHEDULE_ACCEPT } from "@/lib/schedule-files";
 
 // "Today" is read on the client only: the page is prerendered, and the
 // calendar/Quick-Add presets must reflect the visitor's actual date.
@@ -22,6 +23,7 @@ export function HolidayPreferencesForm() {
   const [emergency, setEmergency] = useState<EmergencyValue>({ setUpEmergencyRouting: false, forwardingType: "", phone: "", extension: "", voicemailDestination: "" });
   const [contact, setContact] = useState<ContactValue>({ firstName: "", lastName: "", companyName: "", email: "", additionalNotes: "" });
   const [honeypot, setHoneypot] = useState("");
+  const [files, setFiles] = useState<File[]>([]);
   const [status, setStatus] = useState<Status>("idle");
   const [validationError, setValidationError] = useState("");
   const [submitError, setSubmitError] = useState("");
@@ -58,7 +60,7 @@ export function HolidayPreferencesForm() {
     if (!contact.lastName.trim()) missing.push("Last name");
     if (!contact.companyName.trim()) missing.push("Company name");
     if (!contact.email.trim()) missing.push("Email address");
-    if (selected.size === 0) missing.push("At least one date");
+    if (selected.size === 0 && files.length === 0) missing.push("At least one date (or upload your schedule)");
     if (emergency.setUpEmergencyRouting && emergency.forwardingType && !forwardingValue()) missing.push("Forwarding phone number or extension");
     if (missing.length) {
       setValidationError(`Please fill in: ${missing.join(", ")}.`);
@@ -66,7 +68,26 @@ export function HolidayPreferencesForm() {
     }
 
     setStatus("submitting");
-    const payload: HolidayFormInput & { phone_alt: string } = {
+    let encoded: { name: string; data: string }[] = [];
+    try {
+      encoded = await Promise.all(
+        files.map(
+          (f) =>
+            new Promise<{ name: string; data: string }>((resolve, reject) => {
+              const r = new FileReader();
+              r.onload = () => resolve({ name: f.name, data: String(r.result) });
+              r.onerror = () => reject(r.error);
+              r.readAsDataURL(f);
+            }),
+        ),
+      );
+    } catch {
+      setStatus("error");
+      setSubmitError("One of the files could not be read. Please remove it and try again.");
+      return;
+    }
+    const payload: HolidayFormInput & { phone_alt: string; files: { name: string; data: string }[] } = {
+      files: encoded,
       dates: Object.fromEntries(selected),
       officeClosed: office.officeClosed,
       useStandardGreeting: office.useStandardGreeting,
@@ -114,7 +135,9 @@ export function HolidayPreferencesForm() {
           </div>
           <h3 className="mt-5 font-[family-name:var(--font-heading)] text-2xl font-bold text-ink">Holiday Preferences Received!</h3>
           <p className="mx-auto mt-3 max-w-md text-muted">
-            We&apos;ve got your auto attendant preferences for {selected.size} date{selected.size === 1 ? "" : "s"}. Our team will set
+            We&apos;ve got your auto attendant preferences
+            {selected.size > 0 ? ` for ${selected.size} date${selected.size === 1 ? "" : "s"}` : ""}
+            {files.length > 0 ? (selected.size > 0 ? " and your uploaded schedule" : " from your uploaded schedule") : ""}. Our team will set
             everything up before the holiday. If we have any questions, we&apos;ll reach out.
           </p>
         </Card>
@@ -135,6 +158,8 @@ export function HolidayPreferencesForm() {
         onChange={(e) => setHoneypot(e.target.value)}
         className="absolute -left-[9999px] h-0 w-0 opacity-0"
       />
+
+      <ScheduleUpload files={files} onChange={setFiles} accept={SCHEDULE_ACCEPT} maxFiles={MAX_SCHEDULE_FILES} maxBytes={MAX_SCHEDULE_BYTES} />
 
       <Card>
         <div className="mb-5">
@@ -179,7 +204,16 @@ export function HolidayPreferencesForm() {
       >
         {status === "submitting"
           ? "Submitting..."
-          : `Submit Holiday Preferences${selected.size > 0 ? ` (${selected.size} date${selected.size === 1 ? "" : "s"})` : ""}`}
+          : `Submit Holiday Preferences${
+              selected.size > 0 || files.length > 0
+                ? ` (${[
+                    selected.size > 0 ? `${selected.size} date${selected.size === 1 ? "" : "s"}` : "",
+                    files.length > 0 ? `${files.length} file${files.length === 1 ? "" : "s"}` : "",
+                  ]
+                    .filter(Boolean)
+                    .join(", ")})`
+                : ""
+            }`}
       </button>
     </form>
   );

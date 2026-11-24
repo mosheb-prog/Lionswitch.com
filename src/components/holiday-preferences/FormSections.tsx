@@ -423,3 +423,117 @@ export function YourInformation({ value, onChange }: { value: ContactValue; onCh
     </Card>
   );
 }
+
+/* ------------------------------------------------------------------ */
+/* Upload your holiday schedule                                        */
+/* ------------------------------------------------------------------ */
+
+export function ScheduleUpload({
+  files,
+  onChange,
+  accept,
+  maxFiles,
+  maxBytes,
+}: {
+  files: File[];
+  onChange: (files: File[]) => void;
+  accept: string;
+  maxFiles: number;
+  maxBytes: number;
+}) {
+  const [drag, setDrag] = useState(false);
+  const [error, setError] = useState("");
+  const inputId = "schedule-upload";
+
+  function add(list: FileList | null) {
+    if (!list?.length) return;
+    const next = [...files, ...Array.from(list)].slice(0, maxFiles);
+    const total = next.reduce((n, f) => n + f.size, 0);
+    if (files.length + list.length > maxFiles) setError(`Up to ${maxFiles} files.`);
+    else if (total > maxBytes) {
+      setError("Files are too large (10 MB total).");
+      return;
+    } else setError("");
+    onChange(next);
+  }
+  const fmt = (n: number) => (n > 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(1)} MB` : `${Math.max(1, Math.round(n / 1024))} KB`);
+
+  return (
+    <Card>
+      <div className="flex flex-col gap-5 md:flex-row md:items-center">
+        <div className="md:w-[44%]">
+          <h2 className="font-[family-name:var(--font-heading)] text-lg font-bold text-ink">Already have your holiday schedule?</h2>
+          <p className="mt-1 text-sm text-muted">
+            Upload the closing schedule you send to your staff or customers (PDF, photo, Word or Excel) and we&apos;ll
+            set it up from that. You can upload it instead of picking dates below, or add both.
+          </p>
+        </div>
+        <div className="flex-1">
+          <label
+            htmlFor={inputId}
+            onDragOver={(e) => {
+              e.preventDefault();
+              setDrag(true);
+            }}
+            onDragLeave={() => setDrag(false)}
+            onDrop={(e) => {
+              e.preventDefault();
+              setDrag(false);
+              add(e.dataTransfer.files);
+            }}
+            className={`flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed px-4 py-6 text-center transition ${
+              drag ? "border-orange bg-soft" : "border-soft-border bg-cream hover:border-orange hover:bg-soft"
+            }`}
+          >
+            <span className="grid h-11 w-11 place-items-center rounded-full bg-orange/15 text-label">
+              <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
+                <path d="M12 16V4m0 0-4.5 4.5M12 4l4.5 4.5M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+            <span className="mt-2 text-sm font-semibold text-ink">
+              Drop your schedule here or <span className="text-label underline">browse</span>
+            </span>
+            <span className="mt-0.5 text-xs text-muted">PDF, photo, Word, Excel or text · up to {maxFiles} files, 10 MB total</span>
+            <input
+              id={inputId}
+              type="file"
+              multiple
+              accept={accept}
+              className="sr-only"
+              onChange={(e) => {
+                add(e.target.files);
+                e.target.value = "";
+              }}
+            />
+          </label>
+          {error ? <p className="mt-2 text-xs text-red-600">{error}</p> : null}
+          {files.length ? (
+            <ul className="mt-3 space-y-2">
+              {files.map((f, i) => (
+                <li key={`${f.name}-${i}`} className="flex items-center gap-3 rounded-lg bg-white px-3 py-2 text-sm ring-1 ring-inset ring-line">
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-soft text-[10px] font-bold uppercase text-label">
+                    {(f.name.split(".").pop() || "file").slice(0, 4)}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate font-medium text-ink">{f.name}</span>
+                    <span className="text-xs text-muted">{fmt(f.size)}</span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => onChange(files.filter((_, j) => j !== i))}
+                    aria-label={`Remove ${f.name}`}
+                    className="rounded-lg p-1 text-muted transition hover:text-red-600"
+                  >
+                    <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" aria-hidden="true">
+                      <path d="m5 5 10 10M15 5 5 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                    </svg>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+      </div>
+    </Card>
+  );
+}

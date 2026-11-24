@@ -27,6 +27,7 @@ export async function sendEmail(opts: {
   text: string;
   html?: string;
   replyTo?: string;
+  attachments?: { filename: string; content: Buffer; contentType?: string }[];
 }): Promise<{ sent: boolean }> {
   const transport = getTransport();
 
@@ -45,6 +46,7 @@ export async function sendEmail(opts: {
     subject: opts.subject,
     text: opts.text,
     html: opts.html,
+    attachments: opts.attachments,
   });
 
   return { sent: true };
