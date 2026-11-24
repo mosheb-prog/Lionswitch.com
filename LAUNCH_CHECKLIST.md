@@ -61,9 +61,7 @@ the exact spot.
   data, and OG images (`public/lion-switch-logo.png`). It's 120x120px; if
   you have a larger/sharper source file, swap it in for better quality at
   large sizes, but it's not required.
-- **Walkthrough video.** The Live Dashboard page has a placeholder slot for a
-  short walkthrough video. Supply a video file (or a hosted URL) and we'll
-  embed it lazy-loaded.
+- ~~**Walkthrough video.**~~ Resolved: the 60-second Live Dashboard video is on `/live-dashboard` (`public/videos/`), loading only when someone presses play.
 - **Geo-coordinates.** The LocalBusiness structured data doesn't include a
   map pin (latitude/longitude) for the Brooklyn office. Low priority, but easy
   to add if you want it.

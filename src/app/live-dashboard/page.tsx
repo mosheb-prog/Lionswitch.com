@@ -1,3 +1,4 @@
+import { WalkthroughVideo } from "@/components/live-dashboard/WalkthroughVideo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { pageMetadata } from "@/lib/metadata";
@@ -208,11 +209,9 @@ export default function LiveDashboardPage() {
           <SectionHeading
             eyebrow="See It In Action"
             title="A quick walkthrough"
-            description="TODO(owner): drop in a short walkthrough video and we'll embed it here, lazy-loaded."
+            description="One minute: live calls, follow-ups, and connecting the AI you already use."
           />
-          <div className="mx-auto mt-10 aspect-video max-w-3xl rounded-3xl border border-dashed border-soft-border bg-white grid place-items-center text-sm text-muted">
-            Walkthrough video placeholder
-          </div>
+          <WalkthroughVideo />
         </Reveal>
       </Section>
 
