@@ -173,7 +173,7 @@ export const FOOTER_SOLUTIONS_LINKS: NavLink[] = [
   { label: "Contact Center", href: "/services/contact-center" },
   { label: "AI & Analytics", href: "/services/ai-analytics" },
   { label: "Integrations", href: "/services/integrations" },
-  { label: "Devices", href: "/devices" },
+  { label: "Devices", href: "/features#devices" },
   { label: "Live Dashboard", href: "/live-dashboard" },
 ];
 

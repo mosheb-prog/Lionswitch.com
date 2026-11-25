@@ -27,7 +27,6 @@ const related = {
   integrations: { label: "Integrations", href: "/services/integrations", body: "Salesforce, HubSpot, Microsoft Teams, Zapier and an open API." },
   dashboard: { label: "Live Dashboard", href: "/live-dashboard", body: "See every call live, plus missed-call follow-ups." },
   switching: { label: "How Switching Works", href: "/switching", body: "What moving to Lion Switch looks like, step by step." },
-  devices: { label: "Devices", href: "/devices", body: "Desk phones and softphones, set up for you." },
 };
 
 export const INDUSTRIES: Industry[] = [
@@ -62,7 +61,7 @@ export const INDUSTRIES: Industry[] = [
       commonFaq.holidays,
       { question: "Can staff answer calls from another location?", answer: "Yes. With the ConnectUC app, staff can make and take calls on your practice lines from a computer or cell phone." },
     ],
-    related: [related.voice, related.messaging, related.dashboard, related.switching, related.devices, related.contactCenter],
+    related: [related.voice, related.messaging, related.dashboard, related.switching, related.ai, related.contactCenter],
   },
   {
     slug: "dental",
@@ -95,7 +94,7 @@ export const INDUSTRIES: Industry[] = [
       commonFaq.holidays,
       { question: "Do we need new phones?", answer: "Lion Switch supports zero-touch provisioned desk phones, conference room systems, and softphones on computers and cell phones. We'll go over what fits your office on a demo call." },
     ],
-    related: [related.voice, related.messaging, related.dashboard, related.switching, related.devices, related.ai],
+    related: [related.voice, related.messaging, related.dashboard, related.switching, related.integrations, related.ai],
   },
   {
     slug: "skilled-nursing",
@@ -127,7 +126,7 @@ export const INDUSTRIES: Industry[] = [
       commonFaq.holidays,
       { question: "Can we set up separate lines for admissions and families?", answer: "Yes. The auto attendant, queues and ring groups can send each type of caller to the right team." },
     ],
-    related: [related.voice, related.contactCenter, related.dashboard, related.switching, related.devices, related.ucaas],
+    related: [related.voice, related.contactCenter, related.dashboard, related.switching, related.messaging, related.ucaas],
   },
   {
     slug: "law",

@@ -15,7 +15,6 @@ const R = {
   integrations: { label: "Integrations", href: "/services/integrations", body: "Salesforce, HubSpot, Teams, Zapier and an open API." },
   dashboard: { label: "Live Dashboard", href: "/live-dashboard", body: "See every call live, with missed-call follow-ups." },
   mcp: { label: "Connect your AI (MCP)", href: "/mcp", body: "Ask any MCP-compatible AI about your calls, read-only." },
-  devices: { label: "Devices", href: "/devices", body: "Desk phones and softphones, set up for you." },
   switching: { label: "How Switching Works", href: "/switching", body: "Number porting and go-live, step by step." },
   industries: { label: "Industries", href: "/industries", body: "Medical, dental, skilled nursing, law and real estate." },
 };
@@ -44,7 +43,7 @@ const EXTRA: Record<string, Extra> = {
       { question: "We already have a phone system in the office. Do we have to replace it?", answer: "Not necessarily. SIP trunking connects an on-premise PBX to the phone network through Lion Switch." },
       { question: "How does 911 work?", answer: "E911 management routes emergency calls accurately for each device and location. Our 911 Notice explains how to keep each phone's address up to date." },
     ],
-    related: [R.ucaas, R.devices, R.switching, R.contactCenter, R.dashboard, R.industries],
+    related: [R.ucaas, R.messaging, R.switching, R.contactCenter, R.dashboard, R.industries],
   },
   ucaas: {
     whoFor: ["Hybrid and remote teams", "Teams on the road", "Offices using Microsoft Teams", "Growing businesses", "Anyone tired of juggling apps"],
@@ -69,7 +68,7 @@ const EXTRA: Record<string, Extra> = {
       { question: "Does it work with Microsoft Teams?", answer: "Yes. The Microsoft Teams connector lets you make and receive external calls right inside Teams." },
       { question: "Do customers see my cell number when I call from the app?", answer: "No. Calls from the ConnectUC app use your business number." },
     ],
-    related: [R.voice, R.messaging, R.devices, R.integrations, R.switching, R.industries],
+    related: [R.voice, R.messaging, R.mcp, R.integrations, R.switching, R.industries],
   },
   "contact-center": {
     whoFor: ["Customer service teams", "Sales and intake teams", "Front desks with heavy call volume", "Help desks", "Growing call centers"],
@@ -134,7 +133,7 @@ const EXTRA: Record<string, Extra> = {
       { question: "Do we still need a fax machine?", answer: "No. Virtual fax lets you send and receive faxes without one." },
       { question: "What do we need to know before texting customers?", answer: "Texting customers requires their consent and honoring opt-out replies. Our Acceptable Use Policy explains your responsibilities, and we'll walk you through setup." },
     ],
-    related: [R.ucaas, R.voice, R.integrations, R.industries, R.switching, R.devices],
+    related: [R.ucaas, R.voice, R.integrations, R.industries, R.switching, R.dashboard],
   },
   integrations: {
     whoFor: ["Salesforce and HubSpot users", "Microsoft Teams offices", "Teams using Zapier", "Developers", "Businesses with custom tools"],
