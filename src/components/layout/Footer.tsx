@@ -4,6 +4,7 @@ import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import {
   COMPANY,
   FOOTER_COMPANY_LINKS,
+  FOOTER_INDUSTRY_LINKS,
   FOOTER_SOLUTIONS_LINKS,
   LOGIN_SUPPORT_LINKS,
 } from "@/lib/constants";
@@ -40,8 +41,8 @@ export function Footer() {
   return (
     <footer className="bg-ink text-on-dark">
       <Container className="py-14">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-6">
+          <div className="lg:col-span-2 sm:col-span-2">
             <span className="font-[family-name:var(--font-heading)] text-xl font-bold text-on-dark">
               {COMPANY.name}
             </span>
@@ -64,6 +65,7 @@ export function Footer() {
           </div>
 
           <FooterColumn title="Solutions" links={FOOTER_SOLUTIONS_LINKS} />
+          <FooterColumn title="Industries" links={FOOTER_INDUSTRY_LINKS} />
           <FooterColumn title="Company" links={FOOTER_COMPANY_LINKS} />
 
           <div>
@@ -105,9 +107,17 @@ export function Footer() {
 
         <div className="mt-10 flex flex-col-reverse items-start gap-4 border-t border-white/10 pt-6 text-xs text-on-dark-2 sm:flex-row sm:items-center sm:justify-between">
           <p>{COMPANY.copyright}</p>
-          <Link href="/privacy-policy" className="hover:text-orange-3">
-            Privacy Policy
-          </Link>
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <Link href="/privacy-policy" className="hover:text-orange-3">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-orange-3">
+              Terms of Service
+            </Link>
+            <Link href="/legal/911" className="hover:text-orange-3">
+              911 Notice
+            </Link>
+          </div>
         </div>
       </Container>
     </footer>

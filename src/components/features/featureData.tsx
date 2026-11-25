@@ -4,7 +4,7 @@ import {
   PhoneIcon,
   SparkleIcon,
 } from "@/components/live-dashboard/icons";
-import { COMPANY, STATS } from "@/lib/constants";
+import { COMPANY } from "@/lib/constants";
 
 const base = "h-5 w-5";
 
@@ -183,7 +183,7 @@ export const FEATURE_CATEGORIES: FeatureCategory[] = [
     icon: PlugIcon,
     highlights: ["Salesforce", "HubSpot", "Microsoft Teams", "Zapier", "REST API"],
     features: [
-      { name: STATS.integrationsFeatures, detail: "Connect calls to the CRM your team already uses." },
+      { name: "CRM integrations", detail: "Connect calls to the CRM your team already uses." },
       { name: "Voice API", detail: "Build voice into your own apps and workflows." },
       { name: "QoS Monitor", detail: "Keep an eye on call quality." },
       { name: "Salesforce", detail: "Calls and contacts connected to Salesforce." },

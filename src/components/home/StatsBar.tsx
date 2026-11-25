@@ -5,16 +5,13 @@ const ITEMS = [
   { value: "99.999%", label: "Uptime SLA" },
   { value: "24/6", label: "Live Support" },
   { value: "100k+", label: "Seats Worldwide" },
-  // TODO(owner): see STATS.integrationsHero note in src/lib/constants.ts —
-  // this number doesn't reconcile with the 250+ figure on /features.
-  { value: "50+", label: "Integration Platforms" },
 ];
 
 export function StatsBar() {
   return (
     <div className="border-y border-line bg-soft">
       <Container>
-        <dl className="grid grid-cols-2 gap-8 py-10 sm:grid-cols-4">
+        <dl className="grid grid-cols-3 gap-6 py-10 sm:gap-8">
           {ITEMS.map((item, i) => (
             <Reveal key={item.label} delayMs={i * 90} className="text-center">
               <dt className="sr-only">{item.label}</dt>

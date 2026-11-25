@@ -50,9 +50,8 @@ export default function PrivacyPolicyPage() {
       <Section>
         <div className="mx-auto max-w-3xl">
           {/*
-            TODO(owner): this entire policy is a structural rebuild based on
-            the old site's sections and the rebuild brief. It has NOT been
-            reviewed by counsel. Have legal review before publishing.
+            Owner note: this policy is a structural rebuild based on the old
+            site's sections and has not been reviewed by counsel.
           */}
           <p className="mb-8 rounded-2xl border border-soft-border bg-soft p-4 text-sm text-text">
             <strong>Note:</strong> this policy covers information collected by

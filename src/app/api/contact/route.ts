@@ -11,6 +11,8 @@ const schema = z.object({
   phone: z.string().trim().max(30).optional().default(""),
   company: z.string().trim().min(1).max(200),
   interest: z.string().trim().min(1).max(100),
+  phoneCount: z.string().trim().max(40).optional().default(""),
+  currentProvider: z.string().trim().max(120).optional().default(""),
   message: z.string().trim().min(1).max(500),
   smsConsent: z.union([z.boolean(), z.string()]).optional().default(false),
   // Honeypot — real users never fill this in.
@@ -44,7 +46,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true });
   }
 
-  const { firstName, lastName, email, phone, company, interest, message, smsConsent } =
+  const { firstName, lastName, email, phone, company, interest, phoneCount, currentProvider, message, smsConsent } =
     parsed.data;
 
   await sendEmail({
@@ -57,6 +59,8 @@ export async function POST(req: NextRequest) {
       `Phone: ${phone || "(not provided)"}`,
       `Company: ${company}`,
       `Interested in: ${interest}`,
+      `Number of phones: ${phoneCount || "(not provided)"}`,
+      `Current provider: ${currentProvider || "(not provided)"}`,
       `SMS consent: ${smsConsent ? "yes" : "no"}`,
       "",
       "Message:",

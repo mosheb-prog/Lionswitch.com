@@ -27,7 +27,7 @@ import { SITE_URL } from "@/lib/constants";
 export const metadata: Metadata = pageMetadata({
   title: "Live Call Dashboard — Business Phone Call Reporting",
   description:
-    "A live call dashboard with advanced reporting for Lion Switch customers: live call board, call-center wallboard, scheduled reports, smart alerts, and AI after-call tools.",
+    "A live call dashboard with advanced reporting for Lion Switch customers: live call board, queues, call history, a daily email report, missed-call alerts and AI after-call tools.",
   path: "/live-dashboard",
 });
 
@@ -44,22 +44,16 @@ const FAQ_ITEMS = [
   {
     question: "Who can see my data?",
     answer:
-      "Access is scoped per customer with separate logins and roles (owner, admin, viewer), so only your team sees your data.",
+      "Each company has its own separate logins: office managers see the whole company, and extension logins see their own calls. Only your team sees your data.",
   },
   {
     question: "Can I get reports by email?",
-    answer: "Yes — scheduled daily, weekly and monthly reports can be emailed to whoever you choose.",
+    answer: "Yes. A daily email report goes to whoever you choose, including a weekly-trends section. Weekly and monthly reports are coming soon.",
   },
   {
     question: "Does it work with AI / MCP?",
     answer:
-      "Yes. Call data and AI-generated summaries can be sent to any AI assistant that supports MCP, your CRM, Slack, Google Sheets, email or webhooks through our MCP integration.",
-  },
-  {
-    question: "Is it included with my phone service?",
-    // TODO(owner): confirm pricing/packaging for the live dashboard before publishing.
-    answer:
-      "TODO: the business owner needs to confirm pricing and packaging for the live dashboard before this is published.",
+      "Yes. Connect any AI assistant that supports MCP and ask it about your calls; the connection is read-only. Sending call data to a CRM, Slack, Google Sheets or webhooks is coming soon.",
   },
 ];
 
@@ -139,13 +133,13 @@ export default function LiveDashboardPage() {
             See active calls in real time — caller, who&apos;s handling it, direction,
             and duration.
           </FeatureCard>
-          <FeatureCard icon={<TvIcon />} title="Call-center wallboard / TV mode" delayMs={60}>
-            Queues, callers waiting, longest wait, agent status, answered and
-            abandoned calls, and service level — full-screen for a wall TV.
+          <FeatureCard icon={<TvIcon />} title="Queues at a glance" delayMs={60}>
+            Queues, callers waiting, longest wait, agent status, and answered and
+            abandoned calls. Full-screen TV mode <span className="ml-1 inline-block rounded-full bg-orange/15 px-2 py-0.5 align-middle text-[10px] font-bold uppercase tracking-wider text-label">Coming soon</span>
           </FeatureCard>
           <FeatureCard icon={<ChartIcon />} title="Advanced reporting" delayMs={120}>
-            Filter by date, user, queue, department, number and direction. Export
-            to CSV and PDF, with per-agent leaderboards and period comparisons.
+            Filter by date, user, queue, number and direction, compare periods,
+            and export to CSV.
           </FeatureCard>
           <FeatureCard icon={<HistoryIcon />} title="Call history" delayMs={0}>
             Searchable and filterable call history with recordings and after-call
@@ -155,34 +149,27 @@ export default function LiveDashboardPage() {
             Summaries, action items and sentiment — plus &ldquo;Ask AI about this
             call.&rdquo; Calls are transcribed after they end, never live.
           </FeatureCard>
-          <FeatureCard icon={<MailIcon />} title="Scheduled reports" delayMs={120}>
-            Daily, weekly and monthly reports emailed in a readable format to
-            whoever you choose.
+          <FeatureCard icon={<MailIcon />} title="Daily email report" delayMs={120}>
+            A readable daily report, with weekly trends, emailed to whoever you
+            choose. Weekly and monthly reports <span className="ml-1 inline-block rounded-full bg-orange/15 px-2 py-0.5 align-middle text-[10px] font-bold uppercase tracking-wider text-label">Coming soon</span>
           </FeatureCard>
-          <FeatureCard icon={<BellIcon />} title="Smart alerts" delayMs={0}>
-            Set thresholds — callers waiting too long, a missed-call spike, no
-            agents in a queue, after-hours calls — and get notified by email, text
-            or Slack.
+          <FeatureCard icon={<BellIcon />} title="Missed-call alerts" delayMs={0}>
+            Get an email when too many calls are missed in a short time. More alert
+            types and text or Slack alerts <span className="ml-1 inline-block rounded-full bg-orange/15 px-2 py-0.5 align-middle text-[10px] font-bold uppercase tracking-wider text-label">Coming soon</span>
           </FeatureCard>
           <FeatureCard icon={<VoicemailIcon />} title="Missed calls & voicemail center" delayMs={60}>
             A call-back list with status, so nothing falls through the cracks.
           </FeatureCard>
           <FeatureCard icon={<UsersIcon />} title="Users, numbers & queues" delayMs={120}>
-            An overview of users, numbers, queues and call flows, plus{" "}
-            <Link href="/holiday-preferences" className="text-label underline">
-              holiday schedule status
-            </Link>
-            .
+            An overview of users, numbers, queues and call flows, plus holiday schedule status.
           </FeatureCard>
-          <FeatureCard icon={<SendIcon />} title="Send your data anywhere (MCP)" delayMs={0}>
-            Connect call data to any MCP-compatible AI, Slack, your CRM, Google Sheets, email,
-            Zapier, or your own tools.
+          <FeatureCard icon={<SendIcon />} title="Connect your AI (MCP)" delayMs={0}>
+            Connect any AI assistant that supports MCP and ask it about your calls,
+            read-only. Sending data to Slack, a CRM, Google Sheets or Zapier <span className="ml-1 inline-block rounded-full bg-orange/15 px-2 py-0.5 align-middle text-[10px] font-bold uppercase tracking-wider text-label">Coming soon</span>
           </FeatureCard>
           <FeatureCard icon={<ShieldIcon />} title="Security and access" delayMs={60}>
-            Separate logins per customer, roles (owner, admin, viewer), MFA, and
-            audit logs.
-            {/* TODO(owner): do not claim HIPAA compliance for the dashboard
-                until the owner confirms the exact wording. */}
+            Separate logins per company, office manager and extension logins,
+            two-step sign-in codes, and audit logs.
           </FeatureCard>
         </div>
       </Section>

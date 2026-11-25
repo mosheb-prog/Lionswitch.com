@@ -1,5 +1,6 @@
 "use client";
 
+import { CallTreeView, QueuesView, TranscriptsView, TrendsView, UsersView } from "./DashboardTabs";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -349,14 +350,16 @@ export function DashboardMock() {
               </div>
             </div>
           </>
+        ) : activeTab === "Users" ? (
+          <UsersView />
+        ) : activeTab === "Queues" ? (
+          <QueuesView />
+        ) : activeTab === "Trends" ? (
+          <TrendsView />
+        ) : activeTab === "Call tree" ? (
+          <CallTreeView />
         ) : (
-          <div className="mt-6 grid place-items-center rounded-2xl bg-white/5 py-16 text-center">
-            <p className="font-[family-name:var(--font-heading)] text-lg font-bold">{activeTab}</p>
-            <p className="mt-2 max-w-sm text-sm text-on-dark-2">
-              See full {activeTab.toLowerCase()} reporting, filters and exports on your live
-              dashboard — this preview focuses on Today.
-            </p>
-          </div>
+          <TranscriptsView />
         )}
       </div>
 

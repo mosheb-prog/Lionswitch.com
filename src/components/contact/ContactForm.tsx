@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 const INTERESTS = [
@@ -13,6 +14,8 @@ const INTERESTS = [
   "Full Platform Demo",
   "Other / Not Sure Yet",
 ];
+
+const PHONE_COUNTS = ["1–5", "6–10", "11–25", "26–50", "51–100", "More than 100", "Not sure yet"];
 
 const MESSAGE_LIMIT = 500;
 
@@ -65,8 +68,8 @@ export function ContactForm() {
           Thanks — we got it.
         </h3>
         <p className="mt-2 text-muted">
-          We respond within one business day. If this is urgent and you&apos;re
-          an active customer, call us for emergency support.
+          We respond within one business day. If it&apos;s urgent, please call
+          us.
         </p>
       </div>
     );
@@ -134,6 +137,34 @@ export function ContactForm() {
         </select>
       </div>
 
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div>
+          <label htmlFor="phoneCount" className={labelClasses}>
+            Number of Phones <span className="font-normal text-muted">(optional)</span>
+          </label>
+          <select id="phoneCount" name="phoneCount" className={inputClasses} defaultValue="">
+            <option value="">Select…</option>
+            {PHONE_COUNTS.map((n) => (
+              <option key={n} value={n}>
+                {n}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="currentProvider" className={labelClasses}>
+            Current Provider <span className="font-normal text-muted">(optional)</span>
+          </label>
+          <input
+            id="currentProvider"
+            name="currentProvider"
+            maxLength={120}
+            placeholder="e.g. Verizon, Spectrum, RingCentral"
+            className={inputClasses}
+          />
+        </div>
+      </div>
+
       <div>
         <div className="flex items-center justify-between">
           <label htmlFor="message" className={labelClasses}>
@@ -164,9 +195,21 @@ export function ContactForm() {
           className="mt-0.5 h-4 w-4 rounded border-soft-border text-orange focus:ring-orange"
         />
         <span>
-          I agree to receive text messages from Lion Switch about my
-          inquiry. Message and data rates may apply. Reply STOP to opt out
-          at any time. Consent is not a condition of purchase.
+          I agree to receive text messages from Lion Switch about my inquiry.
+          Message and data rates may apply. Reply HELP for help. Reply STOP to
+          opt out at any time. Consent is not a condition of purchase. See our{" "}
+          <Link href="/privacy-policy" className="text-label underline">
+            Privacy Policy
+          </Link>
+          ,{" "}
+          <Link href="/terms" className="text-label underline">
+            Terms of Service
+          </Link>{" "}
+          and{" "}
+          <Link href="/legal/text-messages" className="text-label underline">
+            Text Message Terms
+          </Link>
+          .
         </span>
       </label>
 

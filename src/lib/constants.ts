@@ -27,12 +27,10 @@ export const COMPANY = {
     { days: "Friday", time: "9:00 AM – 1:00 PM" },
     { days: "Saturday – Sunday", time: "Closed" },
   ],
-  // TODO(owner): the old site used two different support lines —
-  // "24/6 live support" (general) and "24/7 emergency support for active
-  // customers" (contact page). We show both, scoped as below, but please
-  // confirm the exact wording you want for each.
+  // Support wording used everywhere on the site (stats bar, About, Support
+  // page). Owner to confirm; the conflicting "24/7 emergency" line from the
+  // old site is not shown until confirmed.
   supportLineGeneral: "24/6 live support",
-  supportLineEmergency: "24/7 emergency support for active customers",
   tagline: "Enterprise Cloud Communications",
   taglineLong:
     "White-glove service from a family-run Brooklyn team — because your business deserves better than a call center.",
@@ -44,14 +42,8 @@ export const COMPANY = {
 export const STATS = {
   uptime: "99.999% uptime SLA",
   seats: "100k+ seats worldwide",
-  // TODO(owner): the old Features page says "250+ CRM integrations" while
-  // the homepage/hero stat bar says "50+ platforms" — these are different
-  // claims (CRM integrations vs. integration platforms generally) and the
-  // numbers don't reconcile. Using "250+ CRM integrations" on /features and
-  // "50+ platforms" in the hero/stat bar per the rebuild brief; please
-  // confirm both numbers are accurate.
-  integrationsHero: "50+ platforms",
-  integrationsFeatures: "250+ CRM integrations",
+  // No integration count is shown: the old site's "50+" and "250+" figures
+  // conflict. Add one here only once the owner confirms the right number.
   support: COMPANY.supportLineGeneral,
 } as const;
 
@@ -62,6 +54,7 @@ export type NavLink = {
 
 export const MAIN_NAV: NavLink[] = [
   { label: "Services", href: "/services" },
+  { label: "Industries", href: "/industries" },
   { label: "Features", href: "/features" },
   { label: "Live Dashboard", href: "/live-dashboard" },
   { label: "Why Lion Switch", href: "/why-lion-switch" },
@@ -167,23 +160,37 @@ export const SERVICES: Service[] = [
       "Salesforce, HubSpot integrations",
       "Microsoft Teams, Zapier",
       "Open REST API",
-      `${STATS.integrationsFeatures}`,
+      "CRM integrations",
     ],
   },
 ];
 
 export const FOOTER_SOLUTIONS_LINKS: NavLink[] = [
-  { label: "Voice", href: "/features#cloud-pbx" },
-  { label: "Messaging", href: "/features#messaging-fax" },
+  { label: "Voice", href: "/services/voice" },
+  { label: "UCaaS", href: "/services/ucaas" },
+  { label: "Messaging", href: "/services/messaging" },
   { label: "Video & Meetings", href: "/features#video" },
-  { label: "Contact Center", href: "/features#call-center" },
+  { label: "Contact Center", href: "/services/contact-center" },
+  { label: "AI & Analytics", href: "/services/ai-analytics" },
+  { label: "Integrations", href: "/services/integrations" },
+  { label: "Devices", href: "/devices" },
   { label: "Live Dashboard", href: "/live-dashboard" },
 ];
 
 export const FOOTER_COMPANY_LINKS: NavLink[] = [
   { label: "Why Lion Switch", href: "/why-lion-switch" },
+  { label: "How Switching Works", href: "/switching" },
+  { label: "Free Bill Review", href: "/bill-review" },
   { label: "Contact Us", href: "/contact" },
   { label: "Schedule a Demo", href: "/contact#demo" },
+  { label: "Support", href: "/support" },
   { label: "Holiday Preferences", href: "/holiday-preferences" },
-  { label: "Privacy Policy", href: "/privacy-policy" },
+];
+
+export const FOOTER_INDUSTRY_LINKS: NavLink[] = [
+  { label: "Medical", href: "/industries/medical" },
+  { label: "Dental", href: "/industries/dental" },
+  { label: "Skilled Nursing & LTC", href: "/industries/skilled-nursing" },
+  { label: "Law Firms", href: "/industries/law" },
+  { label: "Real Estate", href: "/industries/real-estate" },
 ];

@@ -434,16 +434,23 @@ export function ScheduleUpload({
   accept,
   maxFiles,
   maxBytes,
+  title = "Already have your holiday schedule?",
+  description = "Upload the closing schedule you send to your staff or customers (PDF, photo, Word or Excel) and we'll set it up from that. You can upload it instead of picking dates below, or add both.",
+  dropLabel = "Drop your schedule here or",
+  inputId = "schedule-upload",
 }: {
   files: File[];
   onChange: (files: File[]) => void;
   accept: string;
   maxFiles: number;
   maxBytes: number;
+  title?: string;
+  description?: string;
+  dropLabel?: string;
+  inputId?: string;
 }) {
   const [drag, setDrag] = useState(false);
   const [error, setError] = useState("");
-  const inputId = "schedule-upload";
 
   function add(list: FileList | null) {
     if (!list?.length) return;
@@ -462,11 +469,8 @@ export function ScheduleUpload({
     <Card>
       <div className="flex flex-col gap-5 md:flex-row md:items-center">
         <div className="md:w-[44%]">
-          <h2 className="font-[family-name:var(--font-heading)] text-lg font-bold text-ink">Already have your holiday schedule?</h2>
-          <p className="mt-1 text-sm text-muted">
-            Upload the closing schedule you send to your staff or customers (PDF, photo, Word or Excel) and we&apos;ll
-            set it up from that. You can upload it instead of picking dates below, or add both.
-          </p>
+          <h2 className="font-[family-name:var(--font-heading)] text-lg font-bold text-ink">{title}</h2>
+          <p className="mt-1 text-sm text-muted">{description}</p>
         </div>
         <div className="flex-1">
           <label
@@ -491,7 +495,7 @@ export function ScheduleUpload({
               </svg>
             </span>
             <span className="mt-2 text-sm font-semibold text-ink">
-              Drop your schedule here or <span className="text-label underline">browse</span>
+              {dropLabel} <span className="text-label underline">browse</span>
             </span>
             <span className="mt-0.5 text-xs text-muted">PDF, photo, Word, Excel or text · up to {maxFiles} files, 10 MB total</span>
             <input

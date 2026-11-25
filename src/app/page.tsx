@@ -4,6 +4,7 @@ import { Hero } from "@/components/home/Hero";
 import { AboutSummary } from "@/components/home/AboutSummary";
 import { StatsBar } from "@/components/home/StatsBar";
 import { ServicesOverview } from "@/components/home/ServicesOverview";
+import { IndustriesStrip } from "@/components/home/IndustriesStrip";
 import { WhyLionSwitch } from "@/components/home/WhyLionSwitch";
 import { FutureBand } from "@/components/home/FutureBand";
 import { FeatureHighlights } from "@/components/home/FeatureHighlights";
@@ -25,6 +26,7 @@ export default function Home() {
       <StatsBar />
       <AboutSummary />
       <ServicesOverview />
+      <IndustriesStrip />
       <WhyLionSwitch />
       <FutureBand />
       <FeatureHighlights />

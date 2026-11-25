@@ -66,6 +66,14 @@ function LoginSupportMenu() {
           role="menu"
           className="surface absolute right-0 top-full mt-2 w-60 rounded-2xl border bg-white p-2 z-50"
         >
+          <Link
+            href="/support"
+            role="menuitem"
+            onClick={() => setOpen(false)}
+            className="block rounded-xl px-3 py-2 text-sm font-semibold text-ink hover:bg-soft"
+          >
+            Support Center
+          </Link>
           {LOGIN_SUPPORT_LINKS.map((link) => (
             <a
               key={link.href}
@@ -100,7 +108,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="whitespace-nowrap rounded-full px-2.5 py-2 text-sm font-semibold font-[family-name:var(--font-heading)] text-ink hover:text-label"
+              className="whitespace-nowrap rounded-full px-2 py-2 text-sm font-semibold font-[family-name:var(--font-heading)] text-ink hover:text-label"
             >
               {link.label}
             </Link>
@@ -116,7 +124,7 @@ export function Header() {
             {COMPANY.phoneDisplay}
           </a>
           <Button href="/contact#demo" variant="primary" className="whitespace-nowrap px-5 py-2.5 text-sm">
-            Schedule a Free Demo
+            Free Demo
           </Button>
         </div>
 
@@ -157,6 +165,13 @@ export function Header() {
               <p className="px-3 pb-1 text-xs font-bold uppercase tracking-wider text-muted">
                 Login &amp; Support
               </p>
+              <Link
+                href="/support"
+                onClick={() => setMobileOpen(false)}
+                className="block rounded-lg px-3 py-2.5 text-base font-semibold text-ink hover:bg-soft"
+              >
+                Support Center
+              </Link>
               {LOGIN_SUPPORT_LINKS.map((link) => (
                 <a
                   key={link.href}

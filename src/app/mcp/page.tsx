@@ -33,7 +33,6 @@ const USE_CASES = [
   "“What did the customer ask for?”",
   "Missed-call follow-up",
   "Daily call reports",
-  "Sending call data wherever you want — CRM, Slack, email, Google Sheets, webhooks",
 ];
 
 const FAQ_ITEMS = [
@@ -50,7 +49,7 @@ const FAQ_ITEMS = [
   {
     question: "Where can call data be sent?",
     answer:
-      "Call data and AI-generated summaries can be routed to your CRM, Slack, email, Google Sheets, webhooks, or other tools you already use.",
+      "Today your call data goes to the AI assistant you connect through MCP, read-only. Sending call data and summaries to a CRM, Slack, Google Sheets or webhooks is coming soon.",
   },
   {
     question: "Can the AI change my phone system?",

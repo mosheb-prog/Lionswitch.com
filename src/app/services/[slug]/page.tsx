@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { pageMetadata } from "@/lib/metadata";
-import { Section, SectionHeading } from "@/components/ui/Section";
-import { Button } from "@/components/ui/Button";
-import { Reveal } from "@/components/ui/Reveal";
+import { Section } from "@/components/ui/Section";
+import { DetailPage } from "@/components/detail/DetailPage";
+import { getServiceDetail } from "@/lib/service-details";
 import { JsonLd, breadcrumbSchema, serviceSchema } from "@/lib/schema";
 import { SERVICES, SITE_URL } from "@/lib/constants";
 
@@ -34,7 +34,8 @@ export async function generateMetadata({
 async function ServiceDetailContent({ params }: { params: Params }) {
   const { slug } = await params;
   const service = getService(slug);
-  if (!service) notFound();
+  const detail = getServiceDetail(slug);
+  if (!service || !detail) notFound();
 
   return (
     <>
@@ -53,40 +54,7 @@ async function ServiceDetailContent({ params }: { params: Params }) {
         })}
       />
 
-      <Section className="pb-0">
-        <SectionHeading
-          as="h1"
-          eyebrow="Services"
-          title={service.title}
-          description={service.description}
-        />
-      </Section>
-
-      <Section>
-        <Reveal className="mx-auto max-w-2xl">
-          <h2 className="font-[family-name:var(--font-heading)] text-xl font-bold text-ink">
-            What&apos;s included
-          </h2>
-          <ul className="mt-6 space-y-3">
-            {service.bullets.map((bullet) => (
-              <li key={bullet} className="flex items-start gap-3 text-muted">
-                <span aria-hidden="true" className="mt-1 text-orange">
-                  &#9679;
-                </span>
-                {bullet}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Button href="/contact#demo" variant="primary">
-              Schedule a Free Demo
-            </Button>
-            <Button href="/services" variant="ghost">
-              See all services
-            </Button>
-          </div>
-        </Reveal>
-      </Section>
+      <DetailPage content={detail} />
     </>
   );
 }
