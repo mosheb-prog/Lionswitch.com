@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/bill-review`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE_URL}/support`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE_URL}/holiday-preferences`, changeFrequency: "yearly", priority: 0.4 },
+    { url: `${SITE_URL}/call-preferences`, changeFrequency: "yearly", priority: 0.4 },
     { url: `${SITE_URL}/privacy-policy`, changeFrequency: "yearly", priority: 0.3 },
   ];
 

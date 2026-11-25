@@ -3,6 +3,7 @@ import { z } from "zod";
 import { getClientIp, rateLimit } from "@/lib/rate-limit";
 import { sendEmail } from "@/lib/email";
 import { COMPANY } from "@/lib/constants";
+import { sendToDashboard } from "@/lib/dashboard-intake";
 
 const schema = z.object({
   firstName: z.string().trim().min(1).max(100),
@@ -49,7 +50,33 @@ export async function POST(req: NextRequest) {
   const { firstName, lastName, email, phone, company, interest, phoneCount, currentProvider, message, smsConsent } =
     parsed.data;
 
-  await sendEmail({
+  const dashboard = await sendToDashboard("contact", {
+    name: `${firstName} ${lastName}`,
+    email,
+    company,
+    phone,
+    fields: [
+      { label: "Interested in", value: interest },
+      { label: "Number of phones", value: phoneCount },
+      { label: "Current provider", value: currentProvider },
+      { label: "Message", value: message },
+      { label: "Text message consent", value: smsConsent ? "Yes" : "No" },
+    ],
+    summary: [
+      `Name: ${firstName} ${lastName}`,
+      `Email: ${email}`,
+      `Phone: ${phone || "(not provided)"}`,
+      `Company: ${company}`,
+      `Interested in: ${interest}`,
+      `Number of phones: ${phoneCount || "(not provided)"}`,
+      `Current provider: ${currentProvider || "(not provided)"}`,
+      `Text message consent: ${smsConsent ? "yes" : "no"}`,
+      "",
+      message,
+    ].join("\n"),
+  });
+
+  const emailResult = await sendEmail({
     to: COMPANY.email,
     replyTo: email,
     subject: `New demo/contact request from ${firstName} ${lastName} (${company})`,
@@ -68,5 +95,8 @@ export async function POST(req: NextRequest) {
     ].join("\n"),
   });
 
+  if ((dashboard.configured || !!process.env.SMTP_HOST) && !dashboard.sent && !emailResult.sent) {
+    return NextResponse.json({ error: "Something went wrong. Please try again." }, { status: 502 });
+  }
   return NextResponse.json({ ok: true });
 }

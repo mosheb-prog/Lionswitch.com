@@ -185,6 +185,7 @@ export const FOOTER_COMPANY_LINKS: NavLink[] = [
   { label: "Schedule a Demo", href: "/contact#demo" },
   { label: "Support", href: "/support" },
   { label: "Holiday Preferences", href: "/holiday-preferences" },
+  { label: "Call Preferences", href: "/call-preferences" },
 ];
 
 export const FOOTER_INDUSTRY_LINKS: NavLink[] = [

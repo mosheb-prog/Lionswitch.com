@@ -3,6 +3,7 @@ import { z } from "zod";
 import { getClientIp, rateLimit } from "@/lib/rate-limit";
 import { sendEmail } from "@/lib/email";
 import { COMPANY } from "@/lib/constants";
+import { sendToDashboard } from "@/lib/dashboard-intake";
 import { MAX_SCHEDULE_BYTES, MAX_SCHEDULE_FILES, safeFileName, sniffSchedule } from "@/lib/schedule-files";
 
 // Free bill review: the visitor's details plus up to 3 phone bills (PDF,
@@ -42,11 +43,7 @@ export async function POST(req: NextRequest) {
   }
   if (total > MAX_SCHEDULE_BYTES) return NextResponse.json({ error: "Uploaded files are too large (10 MB total)." }, { status: 400 });
 
-  await sendEmail({
-    to: COMPANY.email,
-    replyTo: d.email,
-    subject: `Free bill review request: ${d.company}${files.length ? ` (${files.length} file${files.length === 1 ? "" : "s"})` : ""}`,
-    text: [
+  const summaryLines = [
       `Name: ${d.firstName} ${d.lastName}`,
       `Email: ${d.email}`,
       `Phone: ${d.phone || "(not provided)"}`,
@@ -55,9 +52,32 @@ export async function POST(req: NextRequest) {
       `Number of phones: ${d.phoneCount || "(not provided)"}`,
       `Notes: ${d.notes || "(none)"}`,
       `Bills attached: ${files.map((f) => f.filename).join(", ") || "none"}`,
-    ].join("\n"),
+  ];
+  const summary = summaryLines.join("\n");
+
+  const dashboard = await sendToDashboard("bill-review", {
+    name: `${d.firstName} ${d.lastName}`,
+    email: d.email,
+    company: d.company,
+    phone: d.phone,
+    fields: [
+      { label: "Current provider", value: d.currentProvider },
+      { label: "Number of phones", value: d.phoneCount },
+      { label: "Notes", value: d.notes },
+    ],
+    summary,
+    files: files.map((f) => ({ filename: f.filename, data: f.content.toString("base64") })),
+  });
+  const email = await sendEmail({
+    to: COMPANY.email,
+    replyTo: d.email,
+    subject: `Free bill review request: ${d.company}${files.length ? ` (${files.length} file${files.length === 1 ? "" : "s"})` : ""}`,
+    text: summary,
     attachments: files,
   });
 
+  if ((dashboard.configured || !!process.env.SMTP_HOST) && !dashboard.sent && !email.sent) {
+    return NextResponse.json({ error: "Something went wrong. Please try again." }, { status: 502 });
+  }
   return NextResponse.json({ ok: true });
 }

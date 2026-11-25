@@ -19,6 +19,7 @@ const PORTAL_NOTES: Record<string, string> = {
 };
 
 const HELP_LINKS = [
+  { label: "Call preferences", href: "/call-preferences", body: "Tell us where your calls ring and where voicemail goes." },
   { label: "Holiday preferences", href: "/holiday-preferences", body: "Tell us your holiday closing dates and greetings." },
   { label: "911 Notice", href: "/legal/911", body: "How emergency calling works, and how to update a phone's address." },
   { label: "How switching works", href: "/switching", body: "Moving numbers and phones to Lion Switch." },
@@ -90,7 +91,7 @@ export default function SupportPage() {
         <Reveal>
           <SectionHeading eyebrow="Helpful links" title="Common requests" />
         </Reveal>
-        <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {HELP_LINKS.map((h, i) => (
             <Reveal key={h.href} delayMs={i * 70}>
               <Link href={h.href} className="hover-lift flex h-full flex-col rounded-2xl border border-line bg-white p-6">
